@@ -1,0 +1,54 @@
+.customer {
+    background-color: #ebf1f5;
+
+    .masonry-item {
+        h3 {
+            font-weight: bold;
+        }
+
+        h4 {
+            color: #f1c93f;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        p {
+            font-style: italic;
+            font-size: 14px;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .customer {
+
+        .masonry-item {
+            h3 {
+                font-size: 20px;
+            }
+
+            h4 {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .customer {
+
+        .masonry-item {
+            h3 {
+                font-size: 24px;
+            }
+
+            h4 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    }
+}

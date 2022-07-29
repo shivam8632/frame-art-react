@@ -1,0 +1,39 @@
+.frame {
+    background-color: rgb(183 183 183 / 9%);
+
+    .row {
+        margin: 0 auto;
+
+        .col-12 {
+            margin-bottom: 30px;
+
+            .card {
+                height: 100%;
+                border: none;
+
+                img {
+                    max-width: 200px;
+                    margin: 0 auto;
+                    object-fit: contain;
+                    padding: 1rem;
+                    min-height: 201px;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .card-title,
+                .card-text {
+                    text-align: center;
+                }
+
+                .card-title {
+                    color: #f1c93f;
+                    font-weight: bold;
+                    margin: 12px 0;
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+
+}
