@@ -195,8 +195,6 @@ const ProductBanner = () => {
 
                                 <button className='button' onClick={getProduct}>Order Now</button>
 
-                                <button className='button'>Order Now</button>
-
                             </div>
                         </form>
                     </div>

@@ -7,22 +7,14 @@ import ProductBox from '../../assets/img/product-box.jpg';
 import TissuePaper from '../../assets/img/tissue-paper.jpg';
 import Logo from '../../assets/img/logo.png';
 import './navbar.scss';
-import 'react-dropdown/style.css';
 
 import {toast } from 'react-toastify';
 import UserContext from '../context/UserContext';
-
-import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faChevronDown, faBars, faXmark, faUser, faCartShopping, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { NavLink, useNavigate } from 'react-router-dom';
-
-
-
-
-
 import { Link } from 'react-router-dom';
 
 
@@ -73,7 +65,7 @@ const Navigation = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const {userauth}= useContext(UserContext); //Get Login User
 
-console.log('userAuth', userauth )
+  console.log('userAuth', userauth )
 
 
   const notify = () => toast.success("User Logged Out Successfully!");
@@ -104,10 +96,6 @@ console.log('userAuth', userauth )
     navigate('/');
     notify();
   }
-
-
-    
-  
 
 
   return (
@@ -159,58 +147,39 @@ console.log('userAuth', userauth )
               </li>
 
               <li onClick={() => setOpen(false)}>
-              <ul className="nav-icons icons d-flex flex-row justify-content-center d-md-none"  onClick={() => setOpen(false)}>
-                
-                <div className="button-icon">
-                  {
-                    user ?
-                    <FontAwesomeIcon icon={faUserCheck} style={{ color: '#FFF' }} />
-                    :
-                    <FontAwesomeIcon icon={faUser} style={{ color: '#FFF' }} />
-                  }
-                
-                    <ul className="dropdown-child">
-                      <li>
-                        <button className='bttn'>
-                        {
-                          user ?
-                          <div onClick={logout}>Logout</div>
-                          :
-                        <NavLink to="/login">Sign In</NavLink>
-                        }
-                        </button>
-                      </li>
-                      <li>Saved Projects</li>
-                      <li>Orders & Proofs</li>
-                      <li>Custom Quotes</li>
-                      <li>Account Settings</li>
-                    </ul>
-                </div>
-              </ul>
-              </li>  
-
-              <li>
-                <Link to="/" onClick={() => closeMenu()} className="menu-link">Product Boxes</Link>
-              </li>
-
-              <li>
-                <Link to="/shipping" onClick={() => closeMenu()} className="menu-link">Shipping Boxes</Link>
-              </li>
-
-              <li>
-                <Link to="/mailer" onClick={() => closeMenu()} className="menu-link">Mailer Boxes</Link>
-              </li>
-
-              <li>
-              <ul className="nav-icons icons d-flex flex-row justify-content-center d-md-none">
-                <button className="button-icon">
-                  <FontAwesomeIcon icon={faUser} />
-                </button>
-
-                <button className="button-icon">
+                <ul className="nav-icons icons d-flex flex-row justify-content-center d-md-none"  onClick={() => setOpen(false)}>
+                  
+                  <div className="button-icon">
+                    {
+                      user ?
+                      <FontAwesomeIcon icon={faUserCheck} style={{ color: '#FFF' }} />
+                      :
+                      <FontAwesomeIcon icon={faUser} style={{ color: '#FFF' }} />
+                    }
+                  
+                      <ul className="dropdown-child">
+                        <li>
+                          <button className='bttn'>
+                          {
+                            user ?
+                            <div onClick={logout}>Logout</div>
+                            :
+                          <NavLink to="/login">Sign In</NavLink>
+                          }
+                          </button>
+                        </li>
+                        <li>Saved Projects</li>
+                        <li>Orders & Proofs</li>
+                        <li>Custom Quotes</li>
+                        <li>Account Settings</li>
+                      </ul>
+                  </div>
+                  <button className="button-icon">
                   <FontAwesomeIcon icon={faCartShopping} />
                 </button>
-              </ul>
+                </ul>
+              </li> 
+              <li>
               </li>
 
             </ul>
@@ -248,19 +217,9 @@ console.log('userAuth', userauth )
                     <li>Account Settings</li>
                   </ul>
                 </div>
-
-            <ul className="nav-icons icons d-none d-md-flex flex-row justify-content-center">
-                <button className="button-icon">
-                  <FontAwesomeIcon icon={faUser} />
-                </button>
-
                 <button className="button-icon">
                   <FontAwesomeIcon icon={faCartShopping} />
                 </button>
-            </ul>
-
-
-            
           </ul>
           </nav>
         </Container>
