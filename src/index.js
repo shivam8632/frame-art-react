@@ -4,7 +4,11 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+<<<<<<< HEAD
 import { AuthProvider } from './components/context/UserContext';
+=======
+
+>>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
 // BOOTSTRAP CONFIGURATION
 import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
@@ -13,10 +17,14 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+<<<<<<< HEAD
       <AuthProvider>
 
         <App />
       </AuthProvider>
+=======
+      <App />
+>>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
     </BrowserRouter>
   </React.StrictMode>
 );

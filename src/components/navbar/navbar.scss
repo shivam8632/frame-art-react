@@ -33,7 +33,11 @@
             max-width: 260px;
             z-index: 9;
             padding: 0;
+<<<<<<< HEAD
             transition: .7s ease-in-out;
+=======
+            transition: 1s ease-in-out;
+>>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
 
             ul {
                 padding: 0;
@@ -113,8 +117,11 @@
         }
 
         .nav-icons {
+<<<<<<< HEAD
             position: relative;
 
+=======
+>>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
             .button-icon {
                 border: none;
                 box-shadow: none;
@@ -123,12 +130,16 @@
                 background-color: transparent;
                 margin: 0 10px;
                 font-size: 18px;
+<<<<<<< HEAD
                 cursor: pointer;
+=======
+>>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
 
                 svg {
                     color: #FFF;
                     font-weight: bold;
                 }
+<<<<<<< HEAD
 
                 ul.dropdown-child {
                     display: none;
@@ -172,6 +183,9 @@
             }
 
 
+=======
+            }
+>>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
         }
 
         .toggle-button {
@@ -258,6 +272,7 @@
 
             .nav-icons {
                 width: 90px;
+<<<<<<< HEAD
 
                 .button-icon {
 
@@ -265,6 +280,8 @@
                         left: -100%;
                     }
                 }
+=======
+>>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
             }
         }
     }

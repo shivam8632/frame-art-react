@@ -12,7 +12,7 @@ import './ProductDetails.scss';
 const ProductDetails = () => {
     return(
         <div className="product-details">
-            <div className="details-bar" style={{ position: 'sticky', top: 0, zIndex: 11 }}>
+            <div className="details-bar" style={{ position: 'sticky', top: 0, zIndex: 4 }}>
                 <ul className="details-list px-3 d-flex flex-wrap" style={{ background: '#FFF', justifyContent: 'center', borderBottom: '1px solid #e1e1e1' }}>
                     <Link to="specifications" spy={true} style={{ width: 'fit-content', color: '#000', textDecoration: 'none', padding: '1.5rem 0' }}>Specification</Link>
                     <Link to="overview" spy={true} style={{ width: 'fit-content', color: '#000', textDecoration: 'none', padding: '1.5rem 0' }}>Overview</Link>

@@ -8,8 +8,13 @@ import './banner.scss';
 const HomeBanner = () => {
     return (
         <div className="home-banner py-3 py-md-4 align-items-lg-center">
+<<<<<<< HEAD
             <div className="area" >
                 <ul className="circles">
+=======
+            <div class="area" >
+                <ul class="circles">
+>>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
                         <li></li>
                         <li></li>
                         <li></li>
