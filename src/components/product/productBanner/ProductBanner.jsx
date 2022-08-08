@@ -51,7 +51,7 @@ const ProductBanner = () => {
                 <div className="breadcrumbs d-flex mb-4">
                     <Breadcrumbs />
                     <span className='ms-2'>/</span>
-                    <span className='ms-2'>Home</span>
+                    <span className='ms-2'>Product</span>
                 </div>
                 <div className="product-container d-md-flex justify-content-between">
                     <div className="product-image">

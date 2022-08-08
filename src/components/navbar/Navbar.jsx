@@ -109,11 +109,27 @@ const Navigation = () => {
               <img src={Logo} alt="logo" />
             </NavLink>
 
-            <ul className={`menuNav ${navbarOpen ? " showMenu" : ""} nav-list d-flex flex-column flex-md-row justify-content-md-start`}>
-              <li>
+            <ul className={`menuNav ${navbarOpen ? " showMenu" : ""} nav-list d-flex flex-column flex-lg-row justify-content-md-start`}>
+              <li onClick={() => setOpen(false)}>
+                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Frame art build up</NavLink>
+              </li>
+
+              <li onClick={() => setOpen(false)}>
+                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Materials</NavLink>
+              </li>
+
+              <li onClick={() => setOpen(false)}>
+                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Create your frame art</NavLink>
+              </li>
+
+              <li onClick={() => setOpen(false)}>
+                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Parts</NavLink>
+              </li>
+
+              {/* <li>
                 <div className="dropdown">
                   <div className='dropdown-header' onClick={toggleDropdown}>
-                    {selectedItem ? items.find(item => item.id === selectedItem).label : "All Products"}
+                    {selectedItem ? items.find(item => item.id === selectedItem).label : "Parts"}
                     <FontAwesomeIcon icon={faChevronDown} />
                   </div>
                   <div className={`dropdown-body ${isOpen && 'open'}`}>
@@ -131,20 +147,18 @@ const Navigation = () => {
                     ))}
                   </div>
                   </div>
-               </li>
-           
-
+              </li> */}
 
               <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Product Boxes</NavLink>
+                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Assembly</NavLink>
               </li>
 
               <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Shipping Boxes</NavLink>
+                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Cleaning</NavLink>
               </li>
 
               <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Mailer Boxes</NavLink>
+                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Gallery</NavLink>
               </li>
 
               <li onClick={() => setOpen(false)}>
@@ -179,12 +193,10 @@ const Navigation = () => {
                   <FontAwesomeIcon icon={faCartShopping} />
                 </button>
                 </ul>
-              </li> 
-              <li>
               </li>
 
             </ul>
-            <button onClick={handleToggle} className='toggle-button d-md-none'>
+            <button onClick={handleToggle} className='toggle-button d-lg-none'>
               {navbarOpen ? (
                 <FontAwesomeIcon icon={faXmark} style={{ color: "#FFF", width: "28px", height: "28px" }} />
               ) : (
@@ -192,7 +204,7 @@ const Navigation = () => {
               )}
             </button>
 
-            <ul className="nav-icons icons d-none d-md-flex flex-row justify-content-center"  onClick={() => setOpen(false)}>
+            <ul className="nav-icons icons d-none d-lg-flex flex-row justify-content-center"  onClick={() => setOpen(false)}>
                 <div className="button-icon">
                   {
                     user ?
