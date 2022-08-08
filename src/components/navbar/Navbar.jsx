@@ -7,6 +7,7 @@ import ProductBox from '../../assets/img/product-box.jpg';
 import TissuePaper from '../../assets/img/tissue-paper.jpg';
 import Logo from '../../assets/img/logo.png';
 import './navbar.scss';
+//import 'react-dropdown/style.css';
 
 import {toast } from 'react-toastify';
 import UserContext from '../context/UserContext';
