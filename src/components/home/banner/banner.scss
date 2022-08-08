@@ -1,0 +1,119 @@
+.home-banner {
+    background-size: cover;
+    position: relative;
+
+    .banner-content {
+        width: 100%;
+        position: relative;
+        z-index: 3;
+    }
+
+    .banner-image {
+        position: relative;
+        z-index: 2;
+    }
+
+
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    .home-banner {
+        .banner-content {
+
+            .content {
+                width: 45%;
+
+                h1 {
+                    font-size: 30px;
+                }
+
+                p {
+                    font-size: 18px;
+                }
+
+                .buttons {
+                    button {
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            .banner-image {
+                width: 55%;
+
+                img {
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 840px) {
+    .home-banner {
+        background-size: 100% 100%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+
+    .home-banner {
+        .banner-content {
+            .content {
+                width: 46%;
+
+                h1 {
+                    font-size: 42px;
+                }
+            }
+
+            .banner-image {
+                width: 46%;
+
+                img {
+                    object-fit: unset;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .home-banner {
+        .banner-content {
+            .content {
+                h1 {
+                    font-size: 48px;
+                }
+
+                p {
+                    font-size: 20px;
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .home-banner {
+        background-color: #000;
+    }
+
+}
+
+@media only screen and (max-width: 1440px) {
+    .home-banner {
+        background-image: url(../../../assets/img/banner-bg.webp);
+        background-repeat: no-repeat;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1440px) {
+    .home-banner {
+        min-height: 100vh;
+    }
+}

@@ -1,0 +1,25 @@
+.started {
+    ul {
+        list-style-type: square;
+
+        li {
+            margin-bottom: 15px;
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .started {
+        ul {
+
+            li {
+                font-size: 18px;
+            }
+        }
+    }
+}
