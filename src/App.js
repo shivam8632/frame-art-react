@@ -1,5 +1,5 @@
 import './App.scss';
-<<<<<<< HEAD
+
 import Routing from './routes/Routes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -34,32 +34,10 @@ function App() {
     <div className="App">
       <Routing />
       <ToastContainer autoclose={3000} />
-=======
-
-import { Routes, Route } from 'react-router-dom';
-import Navigation from './components/navbar/Navbar';
-import Footer from './components/footer/Footer';
-import HomePage from './components/home/HomePage';
-import Shipping from './components/shipping/Shipping';
-import Mailer from './components/mailer/Mailer';
-import Product from './components/product/Product';
-
-function App() {
-  return (
-    <div className="App">
-      <Navigation />
-      <div className="routes">
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/shipping' element={<Shipping />} />
-          <Route path='/mailer' element={<Mailer />} />
-          <Route path='/product' element={<Product />} />
-        </Routes>
-      </div>
-      <Footer />
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
     </div>
   );
+
 }
+
 
 export default App;

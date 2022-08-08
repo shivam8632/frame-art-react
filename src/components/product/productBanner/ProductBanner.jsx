@@ -21,11 +21,9 @@ const ProductBanner = () => {
     const [coating, setcoating] = useState();
     const [sides, setsides] = useState();
     const [quantity, setquantity] = useState();
-<<<<<<< HEAD
     const [prod, setProd] = useState(productData);
     const {getProd}= useContext(UserContext); //Product Detail
-=======
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
 
     const [isShown, setIsShown] = useState(false);
     const handleSubmit= (e) => {
@@ -34,7 +32,7 @@ const ProductBanner = () => {
 
     const handleClick = event => {
         setIsShown(current => !current);
-<<<<<<< HEAD
+
         event.preventDefault();
     };
 
@@ -43,9 +41,9 @@ const ProductBanner = () => {
             user_name: ''
           })
     }
-=======
-      };
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
+    
+
 
     return(
         <div className="productbanner">
@@ -108,78 +106,53 @@ const ProductBanner = () => {
                                 <label>Paper</label>
                                 <br />
                                 <select name="paper" value={paper} onChange={e => setpaper(e.target.value)}>
-<<<<<<< HEAD
+
                                     {productData.items.map((item, i) => {
                                         return(
                                             <option value="" key={i}>{item.paper}</option>
                                         )
                                     })}
-=======
-                                    <option value="">14pt CardStock</option>
-                                    <option value="">18pt CardStock</option>
-                                    <option value="">24pt CardStock</option>
-                                    <option value="">Corrugated Cardboard</option>
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
+                                 
                                 </select>
                             </div>
                             <div className="input-box mb-3">
                                 <label>Coating</label>
                                 <br />
                                 <select name="paper" value={coating} onChange={e => setcoating(e.target.value)}>
-<<<<<<< HEAD
+
                                     {productData.items.map((item, i) => {
                                         return(
                                             <option value="" key={i}>{item.coating}</option>
                                         )
                                         })}
-=======
-                                    <option value="">Glossy Aqueous Coating</option>
-                                    <option value="">Matte Aqueous Coating</option>
-                                    <option value="">High Gloss UV Coating</option>
-                                    <option value="">Soft Touch Laminate</option>
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
                                 </select>
                             </div>
                             <div className="input-box mb-3">
                                 <label>Printed Sides</label>
                                 <br />
                                 <select name="paper" value={sides} onChange={e => setsides(e.target.value)}>
-<<<<<<< HEAD
+
                                     {productData.items.map((item, i) => {
                                         return(
                                             <option value="" key={i}>{item.sides}</option>
                                         )
                                     })}
-=======
-                                    <option value="">Outside Only - Full Color</option>
-                                    <option value="">Inside Only - Full Color</option>
-                                    <option value="">Outside & Inside Only - Full Color</option>
-                                    <option value="">No Printing (blank)</option>
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
                                 </select>
                             </div>
                             <div className="input-box mb-3">
                                 <label>Quantity</label>
                                 <br />
                                 <select name="paper" value={quantity} onChange={e => setquantity(e.target.value)}>
-<<<<<<< HEAD
+
                                     {productData.items.map((item, i) => {
                                         return(
                                             <option value="" key={i}>{item.quantity}</option>
                                         )
                                     })}
-=======
-                                    <option value="">1</option>
-                                    <option value="">100</option>
-                                    <option value="">150</option>
-                                    <option value="">200</option>
-                                    <option value="">250</option>
-                                    <option value="">500</option>
-                                    <option value="">750</option>
-                                    <option value="">1000</option>
-                                    <option value="">1500</option>
-                                    <option value="">2000</option>
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
                                 </select>
                             </div>
 
@@ -219,11 +192,11 @@ const ProductBanner = () => {
                             </div>
 
                             <div className="buttons">
-<<<<<<< HEAD
+
                                 <button className='button' onClick={getProduct}>Order Now</button>
-=======
+
                                 <button className='button'>Order Now</button>
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
                             </div>
                         </form>
                     </div>
@@ -231,6 +204,6 @@ const ProductBanner = () => {
             </Container>
         </div>
     )
-}
+};
 
 export default ProductBanner;

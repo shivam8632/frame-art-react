@@ -18,14 +18,10 @@ h6 {
   font-family: Poppins, Arial, sans-serif !important;
 }
 
-<<<<<<< HEAD
+
 p,
 li {
   color: #818181;
-=======
-p {
-  color: #b3b3b3;
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
 }
 
 @keyframes animateBg {
@@ -38,7 +34,7 @@ p {
   }
 }
 
-<<<<<<< HEAD
+
 @keyframes rotate {
   from {
     transform: rotate(0);
@@ -59,19 +55,16 @@ p {
   }
 }
 
-=======
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
 .heading {
   h2 {
     font-weight: bold;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-<<<<<<< HEAD
+
     background: linear-gradient(90deg, rgb(241 201 63), #305ea3d1, rgba(241, 201, 63, 0.6117647059));
-=======
-    background: linear-gradient(90deg, rgb(241 201 63), rgba(48, 94, 163, 0.8196078431), rgba(241, 201, 63, 0.6117647059));
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
     background-size: 80%;
     animation: animateBg 8s linear infinite;
     background-clip: text;
@@ -85,7 +78,7 @@ p {
   }
 }
 
-<<<<<<< HEAD
+
 #popup-root {
   [data-popup=tooltip].popup-overlay {
     background-color: rgba(0, 0, 0, .5);
@@ -111,9 +104,6 @@ p {
 
 .buttons button,
 .buttons a.button,
-=======
-.buttons button,
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
 .bttn {
   background: #f1c93f;
   border: none;
@@ -124,10 +114,9 @@ p {
   min-width: 165px;
   text-decoration: none;
   text-align: center;
-<<<<<<< HEAD
+
   max-width: fit-content;
-=======
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
 
   &:hover {
     color: #000;

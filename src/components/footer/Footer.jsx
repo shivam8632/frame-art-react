@@ -58,7 +58,7 @@ const Footer = () => {
                         <h2 className='text-white mb-3'>Information</h2>
                         <ul className="information-links p-0">
                         <li className='d-flex'>
-<<<<<<< HEAD
+
                             <Link to="/about" className="menu-link text-white text-decoration-none">About Us</Link>
                         </li>
                         <li className='d-flex'>
@@ -78,27 +78,6 @@ const Footer = () => {
                         </li>
                         <li className='d-flex'>
                             <Link to="/terms-of-use" className="menu-link text-white text-decoration-none">Terms of Use</Link>
-=======
-                            <Link to="/shipping" className="menu-link text-white text-decoration-none">About Us</Link>
-                        </li>
-                        <li className='d-flex'>
-                            <Link to="/shipping" className="menu-link text-white text-decoration-none">Accessibility</Link>
-                        </li>
-                        <li className='d-flex'>
-                            <Link to="/shipping" className="menu-link text-white text-decoration-none">Customer Stories</Link>
-                        </li>
-                        <li className='d-flex'>
-                            <Link to="/shipping" className="menu-link text-white text-decoration-none">Boxing and Packaging Articles</Link>
-                        </li>
-                        <li className='d-flex'>
-                            <Link to="/shipping" className="menu-link text-white text-decoration-none">Reviews</Link>
-                        </li>
-                        <li className='d-flex'>
-                            <Link to="/shipping" className="menu-link text-white text-decoration-none">Privacy Policy</Link>
-                        </li>
-                        <li className='d-flex'>
-                            <Link to="/shipping" className="menu-link text-white text-decoration-none">Terms of Use</Link>
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
                         </li>
                         </ul>
                     </div>
@@ -136,11 +115,9 @@ const Footer = () => {
             </Container>
             <div className="copyright">
                 <Container>
-<<<<<<< HEAD
+
                 <span className="copyright-text text-center text-white d-flex justify-content-center">
-=======
-                <span class="copyright-text text-center text-white d-flex justify-content-center">
->>>>>>> 7065b2c93f53f5d91ade4383afa827e5018db14d
+
                 © 2022 Frame-art.com. All rights reserved.
                 </span>
                 </Container>
