@@ -14,35 +14,39 @@ import productData from '../../data/Products';
 import './ProductBanner.scss'
 
 const ProductBanner = () => {
-    const [length, setlength] = useState();
-    const [width, setwidth] = useState();
-    const [depth, setdepth] = useState();
-    const [paper, setpaper] = useState();
-    const [coating, setcoating] = useState();
-    const [sides, setsides] = useState();
-    const [quantity, setquantity] = useState();
-    const [prod, setProd] = useState(productData);
-    const {getProd}= useContext(UserContext); //Product Detail
-
-
+    const [lengthget, setlength] = useState('1');
+    const [width, setwidth] = useState('1');
+    const [depth, setdepth] = useState('1');
+    const [paper, setpaper] = useState('14pt CardStock');
+    const [coating, setcoating] = useState('Glossy Aqueous Coating');
+    const [sides, setsides] = useState('Outside Only - Full Color');
+    const [quantity, setquantity] = useState('100');
+    const {setDimension} = useContext(UserContext);
     const [isShown, setIsShown] = useState(false);
+
     const handleSubmit= (e) => {
       e.preventDefault();
+
     }
 
     const handleClick = event => {
         setIsShown(current => !current);
-
         event.preventDefault();
     };
 
+    
+
     const getProduct = () => {
-        getProd({
-            user_name: ''
+        setDimension({
+            lengthget: lengthget,
+            width: width,
+            depth: depth,
+            paper: paper,
+            coating: coating,
+            sides: sides,
+            quantity: quantity
           })
     }
-
-    
 
 
     return(
@@ -77,7 +81,7 @@ const ProductBanner = () => {
                                         <input 
                                         name='length' 
                                         type='number'
-                                        value={length}
+                                        value={lengthget}
                                         onChange={e => setlength(e.target.value)}
                                         />
                                     </div>
@@ -109,7 +113,7 @@ const ProductBanner = () => {
 
                                     {productData.items.map((item, i) => {
                                         return(
-                                            <option value="" key={i}>{item.paper}</option>
+                                            <option key={i} value={item.paperValue}>{item.paper}</option>
                                         )
                                     })}
 
@@ -123,7 +127,7 @@ const ProductBanner = () => {
 
                                     {productData.items.map((item, i) => {
                                         return(
-                                            <option value="" key={i}>{item.coating}</option>
+                                            <option value={item.coatingValue} key={i}>{item.coating}</option>
                                         )
                                         })}
 
@@ -136,7 +140,7 @@ const ProductBanner = () => {
 
                                     {productData.items.map((item, i) => {
                                         return(
-                                            <option value="" key={i}>{item.sides}</option>
+                                            <option value={item.sidesValue} key={i}>{item.sides}</option>
                                         )
                                     })}
 
@@ -149,7 +153,7 @@ const ProductBanner = () => {
 
                                     {productData.items.map((item, i) => {
                                         return(
-                                            <option value="" key={i}>{item.quantity}</option>
+                                            <option value={item.quantityValue} key={i}>{item.quantity}</option>
                                         )
                                     })}
 

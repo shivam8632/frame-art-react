@@ -13,7 +13,6 @@ const breakpointColumnsObj = {
 };
 
 const TestimonialList = () => {
-  console.warn(data.items)
   return (
         <>
         <Masonry
@@ -22,8 +21,8 @@ const TestimonialList = () => {
             columnClassName="my-masonry-grid_column"
         >
 
-          {data.items.map((item) => (
-            <TestimonialContent name={item.name} title={item.title} content={item.content} />
+          {data.items.map((item, i) => (
+            <TestimonialContent name={item.name} title={item.title} content={item.content} key={i} />
           ))}
 
         </Masonry>

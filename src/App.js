@@ -8,7 +8,8 @@ import axios from 'axios';
 import UserContext from './components/context/UserContext';
 
 function App() {
-  const { setAuth } = useContext(UserContext); //Login Context
+  const { setAuth, setDimension, prodDimension } = useContext(UserContext); //Login Context
+
   useEffect(() => {
     var token = localStorage.getItem('loginToken');
     if (token != null) {
@@ -29,6 +30,8 @@ function App() {
         })
 
     }
+
+    JSON.parse(localStorage.getItem('cartDataa'))
   })
   return (
     <div className="App">
