@@ -14,8 +14,50 @@ import BlueGlass from '../../assets/img/blgl-material.png';
 import NeoGlass from '../../assets/img/neo-material.png';
 import OrangeGlass from '../../assets/img/oggl-material.png';
 
+import ClearStandOff from '../../assets/img/clear-standoff.png';
+import BlackStandOff from '../../assets/img/black-standoff.png';
+import GoldStandOff from '../../assets/img/gold-standoff.png';
+import SilverStandOff from '../../assets/img/silver-standoff.png';
+import WhiteStandOff from '../../assets/img/white-standoff.png';
+
 const materialData = {
-    items: [
+    opaque: [
+        {
+            image: YellowGlass,
+            text: 'Yello Glass'
+        },
+
+        {
+            image: BlurGlass,
+            text: 'Blur Glass '
+        },
+
+        {
+            image: ClearGlass,
+            text: 'Clear Glass'
+        },
+
+        {
+            image: BlackGlass,
+            text: 'Black Glass'
+        },
+
+        {
+            image: BlueGlass,
+            text: 'Blue Glass'
+        },
+
+        {
+            image: NeoGlass,
+            text: 'Neon Glass'
+        },
+
+        {
+            image: OrangeGlass,
+            text: 'Orange Glass'
+        },
+    ],
+    transparent: [
         {
             image: YellowBox,
             text: 'Yello Material'
@@ -50,40 +92,27 @@ const materialData = {
             image: OrangeBox,
             text: 'Orange Material'
         },
-
+    ],
+    standoff: [
         {
-            image: YellowGlass,
-            text: 'Yello Glass'
+            image: ClearStandOff,
+            text: 'Clear StandOff',
         },
-
         {
-            image: BlurGlass,
-            text: 'Blur Glass '
+            image: BlackStandOff,
+            text: 'Black StandOff',
         },
-
         {
-            image: ClearGlass,
-            text: 'Clear Glass'
+            image: GoldStandOff,
+            text: 'Gold StandOff',
         },
-
         {
-            image: BlackGlass,
-            text: 'Black Glass'
+            image: SilverStandOff,
+            text: 'Silver StandOff',
         },
-
         {
-            image: BlueGlass,
-            text: 'Blue Glass'
-        },
-
-        {
-            image: NeoGlass,
-            text: 'Neon Glass'
-        },
-
-        {
-            image: OrangeGlass,
-            text: 'Orange Glass'
+            image: WhiteStandOff,
+            text: 'White StandOff',
         },
     ]
 }
