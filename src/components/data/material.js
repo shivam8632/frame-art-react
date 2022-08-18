@@ -7,7 +7,7 @@ import LightGreenBox from '../../assets/img/lgn-material.png';
 import OrangeBox from '../../assets/img/og-material.png';
 
 import YellowGlass from '../../assets/img/ylgl-material.png';
-import BlurGlass from '../../assets/img/blgl-material.png';
+import BlurGlass from '../../assets/img/bugl-material.png';
 import ClearGlass from '../../assets/img/cgl-material.png';
 import BlackGlass from '../../assets/img/bkgl-material.png';
 import BlueGlass from '../../assets/img/blgl-material.png';
@@ -24,73 +24,73 @@ const materialData = {
     opaque: [
         {
             image: YellowGlass,
-            text: 'Yello Glass'
+            text: 'Transparent Yellow'
         },
 
         {
             image: BlurGlass,
-            text: 'Blur Glass '
+            text: 'Frosted'
         },
 
         {
             image: ClearGlass,
-            text: 'Clear Glass'
+            text: 'Clear'
         },
 
         {
             image: BlackGlass,
-            text: 'Black Glass'
+            text: 'Transparent Grey'
         },
 
         {
             image: BlueGlass,
-            text: 'Blue Glass'
+            text: 'Transparent Blue'
         },
 
         {
             image: NeoGlass,
-            text: 'Neon Glass'
+            text: 'Transparent Green'
         },
 
         {
             image: OrangeGlass,
-            text: 'Orange Glass'
+            text: 'Transparent Orange'
         },
     ],
     transparent: [
         {
             image: YellowBox,
-            text: 'Yello Material'
+            text: 'Yellow'
         },
 
         {
             image: DarkGreyBox,
-            text: 'Dark Material'
+            text: 'Black'
         },
 
         {
             image: MedGreyBox,
-            text: 'Medium Grey Material'
+            text: 'Grey'
         },
 
         {
             image: LightGreyBox,
-            text: 'Light Grey Material'
+            text: 'White'
         },
 
         {
             image: BlueBox,
-            text: 'Blue Material'
+            text: 'Blue'
         },
 
         {
             image: LightGreenBox,
-            text: 'Light Green Material'
+            text: 'Green'
         },
 
         {
             image: OrangeBox,
-            text: 'Orange Material'
+            text: 'Orange'
         },
     ],
     standoff: [
