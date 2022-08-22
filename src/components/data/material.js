@@ -20,11 +20,16 @@ import GoldStandOff from '../../assets/img/gold-standoff.png';
 import SilverStandOff from '../../assets/img/silver-standoff.png';
 import WhiteStandOff from '../../assets/img/white-standoff.png';
 
+import BlackLaminate from '../../assets/img/black-laminate.png';
+import GreyLaminate from '../../assets/img/grey-laminate.png';
+import CharcoalLaminate from '../../assets/img/charcoal-laminate.png';
+
 const materialData = {
-    opaque: [
+    transparent: [
+
         {
-            image: YellowGlass,
-            text: 'Transparent Yellow'
+            image: ClearGlass,
+            text: 'Clear'
         },
 
         {
@@ -33,18 +38,13 @@ const materialData = {
         },
 
         {
-            image: ClearGlass,
-            text: 'Clear'
+            image: YellowGlass,
+            text: 'Transparent Yellow'
         },
 
         {
-            image: BlackGlass,
-            text: 'Transparent Grey'
-        },
-
-        {
-            image: BlueGlass,
-            text: 'Transparent Blue'
+            image: OrangeGlass,
+            text: 'Transparent Orange'
         },
 
         {
@@ -53,24 +53,34 @@ const materialData = {
         },
 
         {
-            image: OrangeGlass,
-            text: 'Transparent Orange'
+            image: BlueGlass,
+            text: 'Transparent Blue'
+        },
+
+        {
+            image: BlackGlass,
+            text: 'Transparent Grey'
         },
     ],
-    transparent: [
+    opaque: [
         {
             image: YellowBox,
             text: 'Yellow'
         },
 
         {
-            image: DarkGreyBox,
-            text: 'Black'
+            image: OrangeBox,
+            text: 'Orange'
         },
 
         {
-            image: MedGreyBox,
-            text: 'Grey'
+            image: LightGreenBox,
+            text: 'Green'
+        },
+
+        {
+            image: DarkGreyBox,
+            text: 'Black'
         },
 
         {
@@ -84,37 +94,50 @@ const materialData = {
         },
 
         {
-            image: LightGreenBox,
-            text: 'Green'
-        },
-
-        {
-            image: OrangeBox,
-            text: 'Orange'
+            image: MedGreyBox,
+            text: 'Grey'
         },
     ],
     standoff: [
         {
-            image: ClearStandOff,
-            text: 'Clear StandOff',
-        },
-        {
             image: BlackStandOff,
             text: 'Black StandOff',
-        },
-        {
-            image: GoldStandOff,
-            text: 'Gold StandOff',
         },
         {
             image: SilverStandOff,
             text: 'Silver StandOff',
         },
         {
+            image: GoldStandOff,
+            text: 'Gold StandOff',
+        },
+        {
             image: WhiteStandOff,
             text: 'White StandOff',
         },
-    ]
+        {
+            image: ClearStandOff,
+            text: 'Clear StandOff',
+        },
+    ],
+    laminate: [
+        {
+            image: BlackLaminate,
+            text: 'Black'
+        },
+        {
+            image: LightGreyBox,
+            text: 'White'
+        },
+        {
+            image: GreyLaminate,
+            text: 'Grey'
+        },
+        {
+            image: CharcoalLaminate,
+            text: 'Charcoal'
+        },
+    ],
 }
 
 export default materialData;

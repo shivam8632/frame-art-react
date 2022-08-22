@@ -143,7 +143,7 @@ const Navigation = () => {
               </li> */}
 
               <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Assembly</NavLink>
+                <NavLink to="/assembly" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Assembly</NavLink>
               </li>
 
               <li onClick={() => setOpen(false)}>

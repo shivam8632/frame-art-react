@@ -15,6 +15,7 @@ import BoxingList from '../components/boxing/boxing-list/BoxingList';
 import BoxingContent from '../components/boxing/boxing-content/BoxingContent';
 import CustomerReview from '../components/customer-reviews/CustomerReviews';
 import Material from '../components/material/Material';
+import Assembly from '../components/assembly/Assembly';
 
 function Routing() {
   return (
@@ -36,6 +37,7 @@ function Routing() {
         <Route path = '/blogs/boxing-and-packaging-articles/boxing-content' element={<BoxingContent />} />
         <Route path ='/customer-reviews' element={<CustomerReview />} />
         <Route path = '/material' element={<Material />} />
+        <Route path = '/assembly' element={<Assembly />} />
     </Routes>
     <Footer />
     </div>

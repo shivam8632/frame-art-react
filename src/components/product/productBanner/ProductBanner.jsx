@@ -82,6 +82,9 @@ const ProductBanner = () => {
                                         name='length' 
                                         type='number'
                                         value={lengthget}
+                                        step='0.25'
+                                        min='0.25'
+                                        max='6'
                                         onChange={e => setlength(e.target.value)}
                                         />
                                     </div>
@@ -91,6 +94,9 @@ const ProductBanner = () => {
                                         name='width' 
                                         type='number'
                                         value={width}
+                                        step='0.25'
+                                        min='0.25'
+                                        max='6'
                                         onChange={e => setwidth(e.target.value)}
                                         />
                                     </div>
@@ -100,6 +106,9 @@ const ProductBanner = () => {
                                         name='depth' 
                                         type='number'
                                         value={depth}
+                                        step='0.25'
+                                        min='0.25'
+                                        max='6'
                                         onChange={e => setdepth(e.target.value)}
                                         />
                                     </div>
