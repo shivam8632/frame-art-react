@@ -1,5 +1,5 @@
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 
 import Breadcrumbs from '../../breadcrumbs/Breadcrumbs';
@@ -10,6 +10,7 @@ import { faShare, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 import UserContext from '../../context/UserContext';
 import productData from '../../data/Products';
+import axios from 'axios';
 
 import './ProductBanner.scss'
 
@@ -23,6 +24,8 @@ const ProductBanner = () => {
     const [quantity, setquantity] = useState('100');
     const {setDimension} = useContext(UserContext);
     const [isShown, setIsShown] = useState(false);
+    const [productList, setProductList] = useState([]);
+    const [attributes, setAttributes] = useState([]);
 
     const handleSubmit= (e) => {
       e.preventDefault();
@@ -33,6 +36,13 @@ const ProductBanner = () => {
         setIsShown(current => !current);
         event.preventDefault();
     };
+
+    const handleChange = (event, index, id) => {
+        setProductList((prevState) => ({
+            ...prevState,
+            value: event.target.value
+        }))
+     }
 
     
 
@@ -47,6 +57,17 @@ const ProductBanner = () => {
             quantity: quantity
           })
     }
+
+    useEffect(() => {
+        axios.post('http://44.201.12.222:8000/list/post/', {})
+      .then(function(response) {
+          console.log("PRODUCTS" ,response);
+          setProductList(response.data)
+      })
+      .catch(function(error) {
+          console.log(error.response);
+      })
+    }, [])
 
 
     return(
@@ -76,98 +97,45 @@ const ProductBanner = () => {
                             <div className="dimensions mb-3">
                                 <label className='label-parent mb-3'>Enter Interior Dimensions</label>
                                 <div className="dimensions-list d-flex flex-wrap justify-content-between">
-                                    <div className="input-box">
-                                        <label htmlFor="Length(in)">Length(in)</label>
-                                        <input 
-                                        name='length' 
-                                        type='number'
-                                        value={lengthget}
-                                        step='0.25'
-                                        min='0.25'
-                                        max='6'
-                                        onChange={e => setlength(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="input-box">
-                                        <label htmlFor="Width(in)">Width(in)</label>
-                                        <input 
-                                        name='width' 
-                                        type='number'
-                                        value={width}
-                                        step='0.25'
-                                        min='0.25'
-                                        max='6'
-                                        onChange={e => setwidth(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="input-box">
-                                        <label htmlFor="Depth(in)">Depth(in)</label>
-                                        <input 
-                                        name='depth' 
-                                        type='number'
-                                        value={depth}
-                                        step='0.25'
-                                        min='0.25'
-                                        max='6'
-                                        onChange={e => setdepth(e.target.value)}
-                                        />
-                                    </div>
+                                    {productList.map((data, i)=> {
+                                        if(data.Field_type == 'Input field') {
+                                            return(
+                                                <div className="input-box" key={i}>
+                                                    <label htmlFor="Length(in)">{data.Title}(in)</label>
+                                                    <input 
+                                                    name='length' 
+                                                    type='number'
+                                                    value={lengthget}
+                                                    onChange={event => handleChange(event)}
+                                                    />
+                                                </div>
+                                            )
+                                        }
+                                    })}
                                 </div>
                                     
                             </div>
-                            <div className="input-box mb-3">
-                                <label>Paper</label>
-                                <br />
-                                <select name="paper" value={paper} onChange={e => setpaper(e.target.value)}>
 
-                                    {productData.items.map((item, i) => {
-                                        return(
-                                            <option key={i} value={item.paperValue}>{item.paper}</option>
-                                        )
-                                    })}
+                            {productList.map((data, i)=> {
+                                if(data.Field_type == 'Dropdown') {
+                                    return(
+                                        <div className="input-box mb-3">
+                                            <label>{data.Title}</label>
+                                            <br />
+                                            <select name={data.Title} value={data.Title} onChange={e => setpaper(e.target.value)}>
 
-                                 
-                                </select>
-                            </div>
-                            <div className="input-box mb-3">
-                                <label>Coating</label>
-                                <br />
-                                <select name="paper" value={coating} onChange={e => setcoating(e.target.value)}>
+                                                {data.options.map((item, i) => {
+                                                    return(
+                                                        <option key={item.id} value={item.variant_type_name}>{item.variant_type_name}</option>
+                                                    )
+                                                })}
 
-                                    {productData.items.map((item, i) => {
-                                        return(
-                                            <option value={item.coatingValue} key={i}>{item.coating}</option>
-                                        )
-                                        })}
-
-                                </select>
-                            </div>
-                            <div className="input-box mb-3">
-                                <label>Printed Sides</label>
-                                <br />
-                                <select name="paper" value={sides} onChange={e => setsides(e.target.value)}>
-
-                                    {productData.items.map((item, i) => {
-                                        return(
-                                            <option value={item.sidesValue} key={i}>{item.sides}</option>
-                                        )
-                                    })}
-
-                                </select>
-                            </div>
-                            <div className="input-box mb-3">
-                                <label>Quantity</label>
-                                <br />
-                                <select name="paper" value={quantity} onChange={e => setquantity(e.target.value)}>
-
-                                    {productData.items.map((item, i) => {
-                                        return(
-                                            <option value={item.quantityValue} key={i}>{item.quantity}</option>
-                                        )
-                                    })}
-
-                                </select>
-                            </div>
+                                            
+                                            </select>
+                                        </div>
+                                    )
+                                }
+                            })}
 
                             <div className="total mb-3">
                                 <span className="each-price">$3.77 each</span>

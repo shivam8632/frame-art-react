@@ -8,9 +8,9 @@ const Product = () => {
     return(
         <>
         <ProductBanner />
-        <ProductFeature />
-        <ProductDetails />
-        <Started />
+        {/* <ProductFeature /> */}
+        {/* <ProductDetails /> */}
+        {/* <Started /> */}
         </>
     )
 }
