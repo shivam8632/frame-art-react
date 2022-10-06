@@ -11,63 +11,133 @@ import { faShare, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import UserContext from '../../context/UserContext';
 import productData from '../../data/Products';
 import axios from 'axios';
+import {toast } from 'react-toastify';
 
-import './ProductBanner.scss'
+import './ProductBanner.scss';
+
+import { API } from '../../../config/api';
+import BoxModel from '../../box-model/BoxModel';
 
 const ProductBanner = () => {
-    const [lengthget, setlength] = useState('1');
-    const [width, setwidth] = useState('1');
-    const [depth, setdepth] = useState('1');
-    const [paper, setpaper] = useState('14pt CardStock');
-    const [coating, setcoating] = useState('Glossy Aqueous Coating');
-    const [sides, setsides] = useState('Outside Only - Full Color');
-    const [quantity, setquantity] = useState('100');
-    const {setDimension} = useContext(UserContext);
+    const {addDimension} = useContext(UserContext);
     const [isShown, setIsShown] = useState(false);
-    const [productList, setProductList] = useState([]);
+    const [advice, setAdvice] = useState([]);
     const [attributes, setAttributes] = useState([]);
+    const [price, setPrice] = useState();
+    const [prodName, setProdName] = useState()
+    const [productQuantity, setProductQuantity] = useState('');
+    const quantityChange = event => {
+        console.log(event.target.value);
+        setProductQuantity(event.target.value);
+    };
 
-    const handleSubmit= (e) => {
-      e.preventDefault();
+    const cart = () => toast.success("Product Added Successfully!");
+    const cartError = () => toast.warn("Please add all the Information");
 
+    var token = localStorage.getItem('loginToken');
+
+    console.log('loginToken', token)
+
+
+    const setData = (e,item,key) =>{
+        let oldAttributes =  attributes ;
+        console.log(typeof parseInt(e.target.value)=='NaN')
+        oldAttributes[key] = {
+            element_id:parseInt(item.element_id),
+            variant_type_id:parseInt(item.options[0].id),
+            value: isNaN(parseFloat(e.target.value)) ? e.target.value : parseFloat(e.target.value),
+            title: item.Title
+        };
+        setAttributes(oldAttributes);
+        console.log("Attributes", oldAttributes);
     }
+    console.log("QUANTITY", productQuantity)
+
+    useEffect(() => {
+        const fetchList = async () => {
+            axios.post('http://44.201.12.222:8000/product_list/post/',{}, {})
+            .then((response)=>{
+              console.log('POST PRODUCTS')
+              console.log(response);
+              console.log("PRODUCT NAME", response.data[0].product_name);
+              setProdName(response.data[0].product_name);
+            //   setCartValue(response.data.length);
+            })
+    
+            .catch(function(error) {
+                console.log(error.response);
+                
+            })
+        }
+        fetchList();
+    }, []);
+
+    useEffect(() => {
+        
+        const fetchList = () => {
+            axios.post(API.BASE_URL + 'list/post/',{}, {})
+            .then((response) =>{
+                console.log("jsonnnnnn",response)
+                setAdvice(response.data);
+            })
+    
+            .catch(function(error) {
+                console.log(error.response);
+                
+            })
+        }
+        fetchList();
+    }, []);
+
 
     const handleClick = event => {
         setIsShown(current => !current);
         event.preventDefault();
     };
 
-    const handleChange = (event, index, id) => {
-        setProductList((prevState) => ({
-            ...prevState,
-            value: event.target.value
-        }))
-     }
+    const getProduct = event => {
+        console.log('Click on Order')
+        event.preventDefault();
+        if(attributes.length > 7) {
+            addDimension({
+                value: attributes,
+                quantity: productQuantity,
+                price: price,
+                product_name: prodName,
+            })
+            
+                cart()
+        }
 
-    
-
-    const getProduct = () => {
-        setDimension({
-            lengthget: lengthget,
-            width: width,
-            depth: depth,
-            paper: paper,
-            coating: coating,
-            sides: sides,
-            quantity: quantity
-          })
+        else {
+            cartError()
+        }
+      
     }
 
-    useEffect(() => {
-        axios.post('http://44.201.12.222:8000/list/post/', {})
-      .then(function(response) {
-          console.log("PRODUCTS" ,response);
-          setProductList(response.data)
-      })
-      .catch(function(error) {
-          console.log(error.response);
-      })
-    }, [])
+
+   if(attributes.length > 7) {
+    const priceFetch = async () => {
+
+        axios.post(API.BASE_URL + 'calculateprice/price/',{
+            product_id: 1,
+            category_id: 1,
+            quantity: parseInt(productQuantity),
+            attributes: attributes
+        }, {})
+        .then((response)=>{
+          console.log('POST PRICE')
+            console.log("json", response);
+            setPrice(Math.round(response.data.Total));
+        })
+
+        .catch(function(error) {
+            console.log(error.response);
+            
+        })
+    }
+    priceFetch();
+   }
 
 
     return(
@@ -85,7 +155,8 @@ const ProductBanner = () => {
                             <p>High quality printing on Cardstock or Corrugated material.</p>
                         </div>
                         <div className="prod-image">
-                            <img src={BoxesProduct} alt="product-img" className='w-100' />
+                            {/* <img src={BoxesProduct} alt="product-img" className='w-100' /> */}
+                            <BoxModel />
                         </div>
                     </div>
                     <div className="product-form mt-5 mt-md-0">
@@ -93,49 +164,64 @@ const ProductBanner = () => {
                             <FontAwesomeIcon icon={faArrowDown} style={{ color: '#FFF' }} />
                             <h2 className='mb-0 text-white ms-2'>Customize and Check Prices</h2>
                         </div>
-                        <form onSubmit={e => { handleSubmit(e) }}>
+                        <div className="form">
                             <div className="dimensions mb-3">
                                 <label className='label-parent mb-3'>Enter Interior Dimensions</label>
                                 <div className="dimensions-list d-flex flex-wrap justify-content-between">
-                                    {productList.map((data, i)=> {
-                                        if(data.Field_type == 'Input field') {
-                                            return(
-                                                <div className="input-box" key={i}>
-                                                    <label htmlFor="Length(in)">{data.Title}(in)</label>
-                                                    <input 
-                                                    name='length' 
-                                                    type='number'
-                                                    value={lengthget}
-                                                    onChange={event => handleChange(event)}
-                                                    />
-                                                </div>
-                                            )
-                                        }
-                                    })}
-                                </div>
-                                    
+                                    {
+                                       advice.length > 0 && advice.map((item,key) => {
+                                            if(item.Field_type === 'Input field') {
+                                                return (
+                                                    <div className="input-box">
+                                                        <label htmlFor="Length(in)">{item.Title}</label>
+                                                        <input 
+                                                            name={item.Title}
+                                                            type='number'
+                                                            step='0.25'
+                                                            min='0.25'
+                                                            max='6'
+                                                            onChange={(event)  => setData(event,item,key)}
+                                                        />
+                                                    </div>
+                                                )
+                                            }
+                                        })
+                                    }
+                                </div>    
                             </div>
 
-                            {productList.map((data, i)=> {
-                                if(data.Field_type == 'Dropdown') {
-                                    return(
-                                        <div className="input-box mb-3">
-                                            <label>{data.Title}</label>
+                            {
+                               advice.length > 0 && advice.map((item,key) => {
+
+                                    if(item.Field_type === 'Dropdown') {
+                                        return (
+                                            <div className="input-box mb-3">
+                                            <label>{item.Title}</label>
                                             <br />
-                                            <select name={data.Title} value={data.Title} onChange={e => setpaper(e.target.value)}>
-
-                                                {data.options.map((item, i) => {
+                                            <select name={item.Title} onChange={(event)  => setData(event,item,key)}>
+                                            <option>Select</option>
+                                                {item.options.map((items) => {
                                                     return(
-                                                        <option key={item.id} value={item.variant_type_name}>{item.variant_type_name}</option>
+                                                        <option value={items.variant_type_name} selected={items.Title}>{items.variant_type_name}</option>
                                                     )
-                                                })}
-
-                                            
+                                                })}  
                                             </select>
-                                        </div>
-                                    )
-                                }
-                            })}
+                                            </div>
+                                        )
+                                    }
+                                })
+                            }
+
+                            <div className="input-box mb-3">
+                                <label>Quantity</label>
+                                <br />
+                                <select name="Quantity" value={productQuantity} onChange={quantityChange}>  
+                                    <option>Select</option>
+                                    {productData.items.map((item) => (
+                                        <option>{item.quantity}</option>
+                                    ))}
+                                </select>
+                            </div>
 
                             <div className="total mb-3">
                                 <span className="each-price">$3.77 each</span>
@@ -144,11 +230,10 @@ const ProductBanner = () => {
                                     <FontAwesomeIcon icon={faShare} style={{ color: "#000", width: "14px", height: "14px" }} />
                                     </span>
                                     <span className="subtotal w-100 ms-2 d-flex">
-                                        <span className="subtotal me-2 d-flex">Subtotal: </span>
-                                        <span> $582.50</span>
+                                        <span className="subtotal me-2 d-flex">Subtotal: ${price}</span>
                                     </span>
                                 </div>
-                                <div className="match">
+                                {/* <div className="match">
                                     <button className="match-button" onClick={handleClick}>We price match</button>
                                     {isShown && (
                                     <div className="match-content">
@@ -161,23 +246,23 @@ const ProductBanner = () => {
                                         </div>
                                     </div>
                                     )}
-                                </div>
+                                </div> */}
                             </div>
 
-                            <div className="time mb-3">
+                            {/* <div className="time mb-3">
                                 <p className='mb-2'><strong>Production Time:</strong> Standard (8-10 Business Days)</p>
                                 <div className="check d-flex align-items-center">
                                     <input type="checkbox" name="" id="production" />
                                     <label className='ms-2' htmlFor="production">Rush Production</label>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="buttons">
 
                                 <button className='button' onClick={getProduct}>Order Now</button>
 
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </Container>

@@ -10,6 +10,7 @@ import {
     faCcMastercard,
     faCcDiscover,
     faCcAmazonPay,
+    faCcPaypal
   } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Footer.scss';
@@ -23,14 +24,14 @@ const Footer = () => {
                             <img src={Logo} alt="logo" />
                         </div>
                         <div className="info mt-3">
-                            <div className="info-box d-flex mb-2">
+                            {/* <div className="info-box d-flex mb-2">
                                 <p className='mb-0 text-dark me-2'>Mail:- </p>
                                 <a href="mailto:info@frameart.com" className='text-decoration-underline text-dark'>info@frameart.com</a>
-                            </div>
-                            <div className="info-box d-flex mb-2">
+                            </div> */}
+                            {/* <div className="info-box d-flex mb-2">
                                 <p className='mb-0 text-dark me-2'>Phone:- </p>
                                 <a href="tel:+185776979"  className='text-decoration-underline text-dark'>1-855-76979</a>
-                            </div>
+                            </div> */}
                             <div className="info-box d-flex mb-2">
                                 <p className='mb-0 text-dark me-1 fw-bold'>Mon</p>
                                 <p className='mb-0 text-dark me-1'>-</p>
@@ -61,7 +62,7 @@ const Footer = () => {
 
                             <Link to="/about" className="menu-link text-dark text-decoration-none">About Us</Link>
                         </li>
-                        <li className='d-flex'>
+                        {/* <li className='d-flex'>
                             <Link to="/accessibility" className="menu-link text-dark text-decoration-none">Accessibility</Link>
                         </li>
                         <li className='d-flex'>
@@ -69,7 +70,7 @@ const Footer = () => {
                         </li>
                         <li className='d-flex'>
                             <Link to="/blogs/boxing-and-packaging-articles" className="menu-link text-dark text-decoration-none">Boxing and Packaging Articles</Link>
-                        </li>
+                        </li> */}
                         <li className='d-flex'>
                             <Link to="/customer-reviews" className="menu-link text-dark text-decoration-none">Reviews</Link>
                         </li>
@@ -89,10 +90,7 @@ const Footer = () => {
                                 <FontAwesomeIcon icon={faCcVisa} style={{ color: "#000", width: "40px", height: "40px" }} />
                             </li>
                             <li className='d-flex'>
-                                <FontAwesomeIcon icon={faCcAmazonPay} style={{ color: "#000", width: "40px", height: "40px" }} />
-                            </li>
-                            <li className='d-flex'>
-                                <FontAwesomeIcon icon={faCcDiscover} style={{ color: "#000", width: "40px", height: "40px" }} />
+                                <FontAwesomeIcon icon={faCcPaypal} style={{ color: "#000", width: "40px", height: "40px" }} />
                             </li>
                             <li className='d-flex'>
                                 <FontAwesomeIcon icon={faCcMastercard} style={{ color: "#000", width: "40px", height: "40px" }} />

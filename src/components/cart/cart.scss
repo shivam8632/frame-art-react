@@ -1,0 +1,102 @@
+.cart {
+    .cart-main {
+
+        .productContent {
+            background-color: #fff;
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 6px;
+            margin-top: 40px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            p {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                color: #000;
+
+                span {
+                    color: #888
+                }
+
+                .total {
+                    color: #000;
+                    font-weight: bold;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .subtotal {
+        background-color: #fff;
+        padding: 2rem;
+        height: fit-content;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 3rem;
+        border-radius: 6px;
+
+        p {
+            margin-bottom: 0;
+            color: #f1c93f;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        button {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 1.5rem;
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .cart {
+        .cart-container {
+            display: flex;
+            justify-content: space-between;
+
+            .cart-main {
+                display: flex;
+                flex-direction: column;
+                width: 54%;
+
+                .productContent {
+                    p {
+                        .total {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+
+            .subtotal {
+                width: 40%;
+                margin-top: 0;
+
+                h2,
+                p {
+                    width: 50%;
+                }
+
+                p {
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+}

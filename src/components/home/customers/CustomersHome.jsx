@@ -46,9 +46,9 @@ const CustomersHome = () => {
   return (
     <div className="customers">
         <Container>
-            <div className="heading mb-4">
+            {/* <div className="heading mb-4">
                     <h2 className='text-center fs-1 fw-bold'>Our Customers</h2>
-            </div>
+            </div> */}
             <Carousel cols={4} rows={1} gap={10} loop={true}>
                 {customerData.map((customer, i) => (
                     <Carousel.Item key={i}>

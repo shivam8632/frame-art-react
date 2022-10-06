@@ -1,10 +1,5 @@
-
 import React, { useState, useContext } from 'react';
-
-
 import Container from 'react-bootstrap/Container';
-import ProductBox from '../../assets/img/product-box.jpg';
-import TissuePaper from '../../assets/img/tissue-paper.jpg';
 import Logo from '../../assets/img/logo.png';
 import './navbar.scss';
 //import 'react-dropdown/style.css';
@@ -13,73 +8,24 @@ import {toast } from 'react-toastify';
 import UserContext from '../context/UserContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faChevronDown, faBars, faXmark, faUser, faCartShopping, faUserCheck } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark, faUser, faCartShopping, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
-
-const data = [
-  {
-    image: ProductBox,
-    label: 'shipping'
-  },
-  {
-    image: TissuePaper,
-    label: 'mailer'
-  },
-  {
-    image: ProductBox,
-    label: 'shipping'
-  },
-  {
-    image: TissuePaper,
-    label: 'mailer'
-  },
-  {
-    image: ProductBox,
-    label: 'shipping'
-  },
-  {
-    image: TissuePaper,
-    label: 'mailer'
-  },
-  {
-    image: ProductBox,
-    label: 'shipping'
-  },
-  {
-    image: ProductBox,
-    label: 'shipping'
-  },
-  {
-    image: TissuePaper,
-    label: 'mailer'
-  },
-];
 
 const Navigation = () => {
   const [isOpen, setOpen] = useState(false);
-  const [items, setItem] = useState(data);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   const [navbarOpen, setNavbarOpen] = useState(false);
   const {userauth, setDimension}= useContext(UserContext); //Get Login User
   const {prodDimension} = useContext(UserContext);
-  
+
+  console.log('prodDimension', prodDimension)
 
 
   const notify = () => toast.success("User Logged Out Successfully!");
   
   const navigate = useNavigate();
-
-  
-  const toggleDropdown = () => setOpen(!isOpen);
-
-  
-  const handleItemClick = (id) => {
-    selectedItem === id ? setSelectedItem(null) : setSelectedItem(id);
-  }
 
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen)
@@ -89,17 +35,11 @@ const Navigation = () => {
     setNavbarOpen(false)
   }
 
-
   const user = localStorage.getItem('loginToken');
 
-  const cartDataa = localStorage.setItem('cartDataa', JSON.stringify(prodDimension));
+  localStorage.setItem('cartDataa', JSON.stringify(prodDimension));
 
-  
-
-  const getCartData = JSON.parse(localStorage.getItem('cartDataa'))
-
-  console.log(getCartData, "-=-=-=-=-=-=-cartData")
-
+  console.log("PRODDATA", prodDimension);
   
 
   const logout = () => {
@@ -121,16 +61,16 @@ const Navigation = () => {
 
             <ul className={`menuNav ${navbarOpen ? " showMenu" : ""} nav-list d-flex flex-column flex-lg-row justify-content-md-start`}>
               <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Frame art build up</NavLink>
+                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Create your frame art</NavLink>
               </li>
 
               <li onClick={() => setOpen(false)}>
                 <NavLink to="/material" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Materials</NavLink>
               </li>
 
-              <li onClick={() => setOpen(false)}>
+              {/* <li onClick={() => setOpen(false)}>
                 <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Create your frame art</NavLink>
-              </li>
+              </li> */}
 
               <li onClick={() => setOpen(false)}>
                 <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Parts</NavLink>
@@ -200,7 +140,15 @@ const Navigation = () => {
                       </ul>
                   </div>
                   <button className="button-icon">
-                  <FontAwesomeIcon icon={faCartShopping} />
+                  <NavLink to='/cart'><FontAwesomeIcon icon={faCartShopping} /></NavLink>
+                      {
+                        prodDimension.length > 0 ?
+                        <span>
+                          {prodDimension.length}
+                        </span>
+                        :
+                        <span>0</span>
+                      }
                 </button>
                 </ul>
               </li>
@@ -218,7 +166,7 @@ const Navigation = () => {
                 <div className="button-icon">
                   {
                     user ?
-                    <p className='mb-0 text-white'>{userauth?.user_name}</p>
+                    <p className='mb-0'>{userauth?.user_name}</p>
                     :
                     <FontAwesomeIcon icon={faUser} style={{ color: '#000' }} />
                   }
@@ -242,43 +190,16 @@ const Navigation = () => {
                 </div>
                 <div className="cart-icon">
                   <button className="button-icon">
-                    <FontAwesomeIcon icon={faCartShopping} />
-                    {
-                      Object.keys(prodDimension).length > 0 ?
-                      <span>
-                        {Object.keys(prodDimension).length}
-                      </span>
-                      :
-                      <span>
-                        0
-                      </span>
-                    }
+                    <NavLink to='/cart'><FontAwesomeIcon icon={faCartShopping} /></NavLink>
+                      {
+                        prodDimension.length > 0 ?
+                        <span>
+                          {prodDimension.length}
+                        </span>
+                        :
+                        <span>0</span>
+                      }
                   </button>
-                  <div className="cart-popup">
-                    {
-                    Object.keys(getCartData).length != 0 ?
-                    (
-                      <div className="cart-popup-content">
-                          {/* <span className="popup-image">
-                          <img src={ProductBox} alt="product-image" />
-                        </span> */}
-                        <div className="cart-content">
-                          <p><strong>Length: </strong> {prodDimension.lengthget}</p>
-                          <p><strong>Width: </strong> {prodDimension.width}</p>
-                          <p><strong>Depth: </strong> {prodDimension.depth}</p>
-                          <p><strong>Paper: </strong> {prodDimension.paper}</p>
-                          <p><strong>Coating: </strong> {prodDimension.coating}</p>
-                          <p><strong>Sides: </strong> {prodDimension.sides}</p>
-                          <p><strong>Quantity: </strong> {prodDimension.quantity}</p>
-                        </div>
-                      </div>
-                    )
-                    :
-                    (
-                      <p className='empty-cart'>No Items</p>
-                    )
-                  }
-                </div>
                 </div>
           </ul>
           </nav>

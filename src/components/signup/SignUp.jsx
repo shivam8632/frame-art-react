@@ -64,7 +64,7 @@ const SignUp = () => {
         .then(function(response) {
             console.log(response);
             notify();
-            // navigate('/login');
+            navigate('/login');
 
         })
 

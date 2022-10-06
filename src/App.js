@@ -11,6 +11,7 @@ function App() {
   const { setAuth, setDimension, prodDimension } = useContext(UserContext); //Login Context
 
   useEffect(() => {
+    localStorage.getItem('cartProduct');
     var token = localStorage.getItem('loginToken');
     if (token != null) {
       console.log('Get Login Token', token)

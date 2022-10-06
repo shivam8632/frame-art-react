@@ -16,6 +16,10 @@ import BoxingContent from '../components/boxing/boxing-content/BoxingContent';
 import CustomerReview from '../components/customer-reviews/CustomerReviews';
 import Material from '../components/material/Material';
 import Assembly from '../components/assembly/Assembly';
+import Cart from '../components/cart/Cart';
+import Checkout from '../components/checkout/Checkout';
+import Payment from '../components/payment/Payment';
+import PaymentForm from '../payments/stripe/Stripe';
 
 function Routing() {
   return (
@@ -38,6 +42,10 @@ function Routing() {
         <Route path ='/customer-reviews' element={<CustomerReview />} />
         <Route path = '/material' element={<Material />} />
         <Route path = '/assembly' element={<Assembly />} />
+        <Route path = '/cart' element={<Cart />} />
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/payment' element={<Payment />} />
+        <Route path='/paymentForm' element={<PaymentForm />} />
     </Routes>
     <Footer />
     </div>

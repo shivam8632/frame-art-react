@@ -1,6 +1,7 @@
 const productData = {
     items: [
         {
+            Field_type: 'Input field',
             getValue: 1,
             paper: '14pt CardStock',
             coating: 'Glossy Aqueous Coating',
@@ -8,6 +9,7 @@ const productData = {
             quantity: 100,
         },
         {
+            Field_type: 'Input field',
             getValue: 1.25,
             paper: '18pt CardStock',
             coating: 'Matte Aqueous Coating',
@@ -15,6 +17,7 @@ const productData = {
             quantity: 150,
         },
         {
+            Field_type: 'Dropdown',
             getValue: 1.50,
             paper: '24pt CardStock',
             coating: 'High Gloss UV Coatingg',
@@ -22,6 +25,7 @@ const productData = {
             quantity: 200,
         },
         {
+            Field_type: 'Dropdown',
             getValue: 1.75,
             paper: 'Corrugated Cardboard',
             coating: 'Soft Touch Laminate',

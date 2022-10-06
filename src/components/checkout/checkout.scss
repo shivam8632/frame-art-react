@@ -1,0 +1,169 @@
+.checkout {
+    .checkout-container {
+        .checkout-form {
+            .heading {
+                margin: 0;
+                background: #f2f2f2;
+                padding: 20px 24px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                box-sizing: border-box;
+                border-bottom: solid 1px #ccc;
+                border-top-right-radius: 12px;
+                border-top-left-radius: 12px;
+
+                h2 {
+                    font-size: 22px;
+                    width: 100%;
+                }
+            }
+
+            form {
+                padding: 24px;
+                background-color: #fff;
+                border-bottom-right-radius: 12px;
+                border-bottom-left-radius: 12px;
+
+                .input-container {
+                    width: 100%;
+
+                    input,
+                    select {
+                        width: 100%;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        box-sizing: border-box;
+                        outline: 0;
+                        background: #fff;
+                        color: #333;
+                        height: 48px;
+                        padding: 12px 16px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        .productContent {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 3rem;
+
+            .order {
+                .accordion {
+                    margin-bottom: 15px;
+                    border-bottom: 1px solid #e5e5e5;
+                    padding-bottom: 5px;
+
+                    &:last-child {
+                        border-bottom: none;
+                        margin-bottom: 0;
+                        padding-bottom: 0;
+                    }
+
+                    .accordion-item {
+                        border: none;
+
+                        h2 {
+                            border: none;
+                            outline: none;
+
+                            .accordion-button {
+                                padding: 0;
+                                background-color: transparent;
+                                color: #000;
+
+                                &::after {
+                                    filter: invert(1);
+                                }
+                            }
+                        }
+
+                        .accordion-body {
+                            padding-left: 0;
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+
+            p {
+                margin-bottom: 6px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .subtotal {
+                border-top: 1px solid #a8a8a8;
+                border-bottom: 1px solid #a8a8a8;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .checkout {
+        .checkout-container {
+            .checkout-form {
+                width: 52%;
+
+                .heading {
+                    h2 {
+                        font-size: 28px;
+                    }
+                }
+
+                form {
+                    padding: 32px 24px;
+
+                    .input-container.small-input {
+                        width: 48%;
+                    }
+                }
+            }
+
+            .productContent {
+                width: 42%;
+                margin-top: 0;
+                height: fit-content;
+
+                p {
+                    strong {
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .checkout {
+        .checkout-container {
+            .checkout-form {
+                width: 60%;
+            }
+
+            .productContent {
+                width: 35%;
+                padding: 24px 30px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .checkout {
+        .checkout-container {
+            .checkout-form {
+                width: 65%;
+            }
+
+            .productContent {
+                width: 30%;
+            }
+        }
+    }
+}
