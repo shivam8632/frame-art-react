@@ -53,7 +53,7 @@ const SignUp = () => {
     const userLog = localStorage.getItem('loginToken');
 
     const handleApi = () => {
-        axios.post('http://44.201.12.222:8000/register/', {
+        axios.post('http://44.201.12.222:8001/register/', {
             First_name: name,
             Last_name: lastName,
             email: email,

@@ -15,7 +15,7 @@ function App() {
     var token = localStorage.getItem('loginToken');
     if (token != null) {
       console.log('Get Login Token', token)
-      axios.get('http://44.201.12.222:8000/userprofile/', {
+      axios.get('http://44.201.12.222:8001/userprofile/', {
         headers: { "Authorization": `Bearer ${token}` }
       })
         .then((res) => {

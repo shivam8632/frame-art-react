@@ -55,7 +55,7 @@ const ProductBanner = () => {
 
     useEffect(() => {
         const fetchList = async () => {
-            axios.post('http://44.201.12.222:8000/product_list/post/',{}, {})
+            axios.post('http://44.201.12.222:8001/product_list/post/',{}, {})
             .then((response)=>{
               console.log('POST PRODUCTS')
               console.log(response);
@@ -180,6 +180,7 @@ const ProductBanner = () => {
                                                             step='0.25'
                                                             min='0.25'
                                                             max='6'
+                                                            id={"frame-" + item.element_id}
                                                             onChange={(event)  => setData(event,item,key)}
                                                         />
                                                     </div>
