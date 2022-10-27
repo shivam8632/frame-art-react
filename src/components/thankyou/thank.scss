@@ -1,0 +1,27 @@
+.thank {
+    .thank-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        a {
+            &:nth-child(1) {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .thank {
+        .thank-button {
+            flex-direction: row;
+            a {
+                &:nth-child(1) {
+                    margin-right: 20px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import './SignUp.scss';
 import axios from 'axios';
 import {toast } from 'react-toastify';
+import { API } from '../../config/api';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -53,7 +54,7 @@ const SignUp = () => {
     const userLog = localStorage.getItem('loginToken');
 
     const handleApi = () => {
-        axios.post('http://44.201.12.222:8001/register/', {
+        axios.post(API.BASE_URL + 'register/', {
             First_name: name,
             Last_name: lastName,
             email: email,

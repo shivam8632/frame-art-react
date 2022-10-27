@@ -7,6 +7,14 @@
             margin-top: 20px;
         }
     }
+
+    table {
+        td, th {
+            border: 1px solid #444;
+            text-align: left;
+            padding: 8px;
+          }
+    }
 }
 
 @media only screen and (min-width: 768px) {

@@ -7,16 +7,22 @@ import { useEffect, useContext } from 'react';
 import axios from 'axios';
 import UserContext from './components/context/UserContext';
 
+import { API } from './config/api';
+
 function App() {
   const { setAuth, setDimension, prodDimension } = useContext(UserContext); //Login Context
 
   useEffect(() => {
     localStorage.getItem('cartProduct');
+    localStorage.getItem("cartProducts");
     var token = localStorage.getItem('loginToken');
+    localStorage.getItem("newCart");
+    console.log("NEWWWWWWWW APPPPPPPP" ,localStorage.getItem("newCart"));
+    console.log(token)
     if (token != null) {
       console.log('Get Login Token', token)
-      axios.get('http://44.201.12.222:8001/userprofile/', {
-        headers: { "Authorization": `Bearer ${token}` }
+      axios.post(API.BASE_URL + 'userprofile/',{}, {
+        headers: { 'Authorization' : `Bearer ${token}` }
       })
         .then((res) => {
           setAuth({
@@ -33,7 +39,7 @@ function App() {
     }
 
     JSON.parse(localStorage.getItem('cartDataa'))
-  })
+  }, [])
   return (
     <div className="App">
       <Routing />

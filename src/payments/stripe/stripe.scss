@@ -1,0 +1,47 @@
+.stripe-container {
+    .heading {
+        margin-bottom: 2rem;
+    }
+    form {
+        max-width: 550px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 2rem;
+        border-radius: 6px;
+        .input-container {
+            display: flex;
+            input {
+                min-height: 40px;
+                background: #fff;
+                outline: none;
+                border: 1px solid #969696;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+                padding: 6px 10px;
+                width: 100%;
+            }
+            
+            &:last-child {
+                input {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .card-info {
+            justify-content: space-between;
+            .number-month {
+                width: 50%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                input {
+                    width: 48%;
+                }
+            }
+            input[type="number"] {
+                width: 35%;
+            }
+
+        }
+    }
+}

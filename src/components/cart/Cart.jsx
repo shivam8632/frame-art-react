@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import './cart.scss';
 
@@ -9,6 +10,11 @@ const Cart = () => {
     const {prodDimension, setCartValue, cartValue} = useContext(UserContext);
     console.log('prodDimension', prodDimension)
     console.log("LOC" ,localStorage.getItem('cartProduct'))
+    const navigate = useNavigate();
+    const user = localStorage.getItem('loginToken');
+    
+
+    const checkLog = () => toast.warn("Please Log In to Proceed");
 
   
     var total=0;
@@ -17,6 +23,16 @@ const Cart = () => {
     };
     console.log(" total ", total);
     setCartValue(total);
+
+    const checkAuth = () => {
+        if(user) {
+            navigate('/checkout')
+        }
+        else {
+            checkLog();
+        }
+    }
+
     return(
         <div className="cart">
             <Container>
@@ -39,8 +55,8 @@ const Cart = () => {
                         <div className="subtotal">
                         <h2>Subtotal</h2>
                             <p>${cartValue}</p>
-                            <button className='bttn'>
-                                <Link to='/checkout'>Proceed to Checkout</Link>
+                            <button className='bttn' onClick={checkAuth}>
+                                Proceed to Checkout
                             </button>
                         </div>
                     </div>

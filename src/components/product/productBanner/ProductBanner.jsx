@@ -3,7 +3,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 
 import Breadcrumbs from '../../breadcrumbs/Breadcrumbs';
-import BoxesProduct from '../../../assets/img/boxes-product.jpg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare, faArrowDown } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +10,7 @@ import { faShare, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import UserContext from '../../context/UserContext';
 import productData from '../../data/Products';
 import axios from 'axios';
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import './ProductBanner.scss';
 
@@ -19,7 +18,7 @@ import { API } from '../../../config/api';
 import BoxModel from '../../box-model/BoxModel';
 
 const ProductBanner = () => {
-    const {addDimension} = useContext(UserContext);
+    const {addDimension, checkT,tryFunction} = useContext(UserContext);
     const [isShown, setIsShown] = useState(false);
     const [advice, setAdvice] = useState([]);
     const [attributes, setAttributes] = useState([]);
@@ -33,6 +32,7 @@ const ProductBanner = () => {
 
     const cart = () => toast.success("Product Added Successfully!");
     const cartError = () => toast.warn("Please add all the Information");
+    const logError = () => toast.warn("Please Login to Continue");
 
     var token = localStorage.getItem('loginToken');
 
@@ -43,19 +43,20 @@ const ProductBanner = () => {
         let oldAttributes =  attributes ;
         console.log(typeof parseInt(e.target.value)=='NaN')
         oldAttributes[key] = {
-            element_id:parseInt(item.element_id),
-            variant_type_id:parseInt(item.options[0].id),
+            element_id: parseInt(item.element_id),
+            variant_type_id: parseInt(item.options[0].id),
             value: isNaN(parseFloat(e.target.value)) ? e.target.value : parseFloat(e.target.value),
             title: item.Title
         };
         setAttributes(oldAttributes);
+        tryFunction(attributes)
         console.log("Attributes", oldAttributes);
     }
     console.log("QUANTITY", productQuantity)
 
     useEffect(() => {
         const fetchList = async () => {
-            axios.post('http://44.201.12.222:8001/product_list/post/',{}, {})
+            axios.post(API.BASE_URL + 'product_list/post/',{}, {})
             .then((response)=>{
               console.log('POST PRODUCTS')
               console.log(response);
@@ -89,28 +90,26 @@ const ProductBanner = () => {
         fetchList();
     }, []);
 
-
-    const handleClick = event => {
-        setIsShown(current => !current);
-        event.preventDefault();
-    };
-
     const getProduct = event => {
         console.log('Click on Order')
         event.preventDefault();
-        if(attributes.length > 7) {
+        if(attributes.length > 7  && token) {
             addDimension({
-                value: attributes,
+                value: attributes, 
                 quantity: productQuantity,
                 price: price,
                 product_name: prodName,
             })
             
-                cart()
+            cart()
         }
 
-        else {
+        if(attributes.length < 7) {
             cartError()
+        }
+
+        if(!token) {
+            logError()
         }
       
     }
@@ -170,9 +169,9 @@ const ProductBanner = () => {
                                 <div className="dimensions-list d-flex flex-wrap justify-content-between">
                                     {
                                        advice.length > 0 && advice.map((item,key) => {
-                                            if(item.Field_type === 'Input field') {
+                                            if(item.Field_type === 'Input') {
                                                 return (
-                                                    <div className="input-box">
+                                                    <div className="input-box" key={key}>
                                                         <label htmlFor="Length(in)">{item.Title}</label>
                                                         <input 
                                                             name={item.Title}
@@ -180,6 +179,7 @@ const ProductBanner = () => {
                                                             step='0.25'
                                                             min='0.25'
                                                             max='6'
+                                                            defaultValue="5"
                                                             id={"frame-" + item.element_id}
                                                             onChange={(event)  => setData(event,item,key)}
                                                         />
@@ -188,6 +188,7 @@ const ProductBanner = () => {
                                             }
                                         })
                                     }
+
                                 </div>    
                             </div>
 
@@ -196,32 +197,45 @@ const ProductBanner = () => {
 
                                     if(item.Field_type === 'Dropdown') {
                                         return (
-                                            <div className="input-box mb-3">
-                                            <label>{item.Title}</label>
-                                            <br />
-                                            <select name={item.Title} onChange={(event)  => setData(event,item,key)}>
-                                            <option>Select</option>
-                                                {item.options.map((items) => {
-                                                    return(
-                                                        <option value={items.variant_type_name} selected={items.Title}>{items.variant_type_name}</option>
-                                                    )
-                                                })}  
-                                            </select>
+                                            <div className="input-box mb-3" key={key}>
+                                                <label>{item.Title}</label>
+                                                <br />
+                                                <select name={item.Title} id={"frame-" + item.element_id} onChange={(event)  => setData(event,item,key)}>
+                                                <option>Select</option>
+                                                    {item.options.map((items, key) => {
+                                                        return(
+                                                            <option key={key} value={items.variant_type_name} selected={items.Title}>{items.variant_type_name}</option>
+                                                        )
+                                                    })}  
+                                                </select>
                                             </div>
                                         )
                                     }
                                 })
                             }
 
+                            
+
                             <div className="input-box mb-3">
                                 <label>Quantity</label>
                                 <br />
                                 <select name="Quantity" value={productQuantity} onChange={quantityChange}>  
                                     <option>Select</option>
-                                    {productData.items.map((item) => (
-                                        <option>{item.quantity}</option>
+                                    {productData.items.map((item, key) => (
+                                        <option key={key}>{item.quantity}</option>
                                     ))}
                                 </select>
+                            </div>
+
+                            <div id="upload-img">
+                                <li className="cr function">
+                                    <div>
+                                        <span className="property-name">Upload Image</span>
+                                        <div className="c">
+                                            <div className="button"></div>
+                                        </div>
+                                    </div>
+                                </li>
                             </div>
 
                             <div className="total mb-3">
@@ -231,7 +245,12 @@ const ProductBanner = () => {
                                     <FontAwesomeIcon icon={faShare} style={{ color: "#000", width: "14px", height: "14px" }} />
                                     </span>
                                     <span className="subtotal w-100 ms-2 d-flex">
-                                        <span className="subtotal me-2 d-flex">Subtotal: ${price}</span>
+                                        {price > 0 ? (
+                                            <span className="subtotal me-2 d-flex">Subtotal: ${price}</span>
+                                            )
+                                            :
+                                            <span className="subtotal me-2 d-flex">Subtotal: $0</span>
+                                        }
                                     </span>
                                 </div>
                                 {/* <div className="match">

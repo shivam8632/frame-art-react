@@ -20,6 +20,9 @@ import Cart from '../components/cart/Cart';
 import Checkout from '../components/checkout/Checkout';
 import Payment from '../components/payment/Payment';
 import PaymentForm from '../payments/stripe/Stripe';
+import ProductDisplay from '../payments/stripe/Stripe';
+import Thank from '../components/thankyou/Thank';
+import Settings from '../components/settings/Settings';
 
 function Routing() {
   return (
@@ -46,6 +49,9 @@ function Routing() {
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/payment' element={<Payment />} />
         <Route path='/paymentForm' element={<PaymentForm />} />
+        <Route path='/stripe' element={<ProductDisplay />} />
+        <Route path ='/thankyou' element={<Thank />} />
+        <Route path ='/settings' element={<Settings />} />
     </Routes>
     <Footer />
     </div>

@@ -2,6 +2,7 @@
 
     .product-container {
         .product-image {
+            height: fit-content;
             canvas {
                 width: 100% !important;
                 height: 100% !important;
@@ -154,6 +155,28 @@
                 }
             }
         }
+    }
+}
+
+.canvas {
+    canvas {
+        &:not(:last-child) {
+            display: none !important;
+        }
+    }
+}
+
+#upload-img {
+    position: relative;
+    input {
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+        left: 0;
+        display: block !important;
+        opacity: 0;
+        top: 0;
+        cursor: pointer;
     }
 }
 

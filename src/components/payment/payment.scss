@@ -1,3 +1,48 @@
+.cart {
+    .cart-container {
+        .cart-main.product-main {
+            width: 100%;
+            .cardContent {
+                background: #fff;
+                padding: 2rem;
+                border-radius: 6px;
+                height: fit-content;
+                margin-top: 2rem;
+                .payment-list {
+                    margin-top: 1rem;
+                    border: 1px solid #bebebe;
+                    border-radius: 2px;
+                    a {
+                        text-decoration: none;
+                    }
+
+                    .payment-card {
+                        display: flex;
+                        align-items: center;
+                        padding: 7px 9px;
+                        width: 100%;
+                        outline: none;
+                        border: none;
+                        background: none;
+                        cursor: pointer;
+                        border-bottom: 1px solid #dedede;
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                        p {
+                            margin-left: 20px;
+                            margin-bottom: 0;
+                        }
+                        svg {
+                            font-size: 26px;
+                        }
+                    }   
+                }
+            }
+        }
+    }
+}
+
 div.bttn {
     form {
         button {
@@ -6,6 +51,25 @@ div.bttn {
             outline: none;
             box-shadow: none;
             border: none
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .cart {
+        .cart-container {
+            .cart-main.product-main {
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+                .productContent {
+                    width: 52%;
+                }
+                .cardContent {
+                    width: 42%;
+                    margin-top: 0;
+                }
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import {toast } from 'react-toastify';
 import UserContext from '../context/UserContext';
+import { API } from '../../config/api';
 
 
 const Login = () => {
@@ -33,28 +34,37 @@ const Login = () => {
     };
 
     const handleLogin = () => {
-      axios.post('http://44.201.12.222:8001/login/', {
+      axios.post(API.BASE_URL + 'login/', {
           email: email,
           password: password,
       })
       .then(function(response) {
           console.log(response);
-          notify();
-          localStorage.setItem('loginToken', response.data.token.access);
-          localStorage.setItem('logInInfo', response.config.data)
-          console.log("Local Storage", localStorage.getItem('loginToken'))
-  
+          if(response.data.msg) {
+            notify();
+            localStorage.setItem('loginToken', response.data.token.access);
+            localStorage.setItem('logInInfo', response.config.data);
+            localStorage.setItem('password', password);
+            console.log("Local Storage", localStorage.getItem('loginToken'))
+            console.log("Success"); 
+            navigate('/');
+          }
+
+          else {
+            wrongData();
+          }
           var token = localStorage.getItem('loginToken');
+
           if(token != null){
             console.log('Get Login Token', token)
-            axios.get('http://44.201.12.222:8001/userprofile/', {
+            axios.post(API.BASE_URL + 'userprofile/',{}, {
                 headers: {"Authorization": `Bearer ${token}`}
             })
             .then((res)=>{
               setAuth({
                 user_name: res.data.First_name
               })
-                console.log('profile Get', res.data.First_name);
+                console.log('profile Get', res.data.First_name)
             })
     
             .catch(function(error) {
@@ -63,8 +73,7 @@ const Login = () => {
             })
     
         }
-          console.log("Success"); 
-          navigate('/');
+          
       })
       .catch(function(error) {
         if(error.response.data.errors) {

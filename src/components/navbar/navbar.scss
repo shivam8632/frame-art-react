@@ -177,6 +177,11 @@
                             padding-bottom: 15px;
                             margin-bottom: 15px;
                         }
+
+                        a {
+                            text-decoration: none;
+                            color: inherit;
+                        }
                     }
                 }
 
@@ -326,7 +331,7 @@
                 .button-icon {
 
                     ul.dropdown-child {
-                        left: -100%;
+                        left: -178%;
                     }
                 }
 
@@ -367,6 +372,18 @@
                     .open {
                         max-width: 855px;
                     }
+
+                    .nav-icons {
+        
+        
+                        .button-icon {
+        
+                            ul.dropdown-child {
+                                left: -671%;
+                            }
+                        }
+        
+                    }
                 }
             }
         }
@@ -384,6 +401,18 @@
                 .dropdown-header {
                     font-size: 15px;
                 }
+            }
+
+            .nav-icons {
+        
+        
+                .button-icon {
+
+                    ul.dropdown-child {
+                        left: -535%;
+                    }
+                }
+
             }
         }
     }

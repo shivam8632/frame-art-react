@@ -36,6 +36,7 @@ const Navigation = () => {
   }
 
   const user = localStorage.getItem('loginToken');
+  
 
   localStorage.setItem('cartDataa', JSON.stringify(prodDimension));
 
@@ -136,7 +137,7 @@ const Navigation = () => {
                         <li>Saved Projects</li>
                         <li>Orders & Proofs</li>
                         <li>Custom Quotes</li>
-                        <li>Account Settings</li>
+                        <NavLink to='/settings'><li>Account Settings</li></NavLink>
                       </ul>
                   </div>
                   <button className="button-icon">
@@ -185,7 +186,7 @@ const Navigation = () => {
                     <li>Saved Projects</li>
                     <li>Orders & Proofs</li>
                     <li>Custom Quotes</li>
-                    <li>Account Settings</li>
+                    <li><NavLink to='/settings'>Account Settings</NavLink></li>
                   </ul>
                 </div>
                 <div className="cart-icon">

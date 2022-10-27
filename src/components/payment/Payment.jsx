@@ -1,39 +1,17 @@
 import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
-import { useNavigate } from 'react-router-dom';
-import { API } from '../../config/api';
-import axios from 'axios';
-import PaymentForm from '../../payments/stripe/Stripe';
-import StripeContainer from '../StripeContainer';
+import { Link } from 'react-router-dom';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faCcPaypal } from '@fortawesome/free-brands-svg-icons';
 
 import './payment.scss';
 
 import UserContext from '../context/UserContext';
 const Payment = () => {
     const {checkValue} = useContext(UserContext);
-    const navigate = useNavigate();
     console.log(checkValue)
-
-    const payButton = (event) => {
-        event.preventDefault();
-        navigate('/paymentForm');
-
-        //   axios.post(API.BASE_URL + 'stripe/', {
-        //     xsrfCookieName: 'csrf_token',
-        //     xsrfHeaderName: 'X-CSRFTOKEN',
-        //     withCredentials: true
-        //   })
-        // .then((response)=>{
-        //     console.log("Stripe Payment", response.data);
-        // })
-
-        // .catch(function(error) {
-        //     console.log(error.response);
-            
-        // })
-
-          
-    }
 
     return(
         <div className="cart">
@@ -41,7 +19,7 @@ const Payment = () => {
                 <h1 className='mb-5'>Payment</h1>
 
                     <div className="cart-container">
-                        <div className="cart-main ">
+                        <div className="cart-main product-main">
                             <div className="productContent">
                             <p><strong>Apartment: </strong> {checkValue.apartment}</p>
                             <p><strong>City: </strong> {checkValue.city}</p>
@@ -65,9 +43,26 @@ const Payment = () => {
                                 )
                             })}
                             </div>
-                            <div className="bttn mt-4">
-                            <PaymentForm />
+                            <div className="cardContent">
+                                <h4>Select Payment Method</h4>
+                                <div className="payment-list">
+                                    <Link to='/stripe'>
+                                        <button className="payment-card">
+                                            <FontAwesomeIcon icon={faCreditCard} style={{ color: '#000' }} />
+                                            <p>Card</p>
+                                        </button>
+                                    </Link>
+                                    
+                                    <button className="payment-card">
+                                        <FontAwesomeIcon icon= {faCcPaypal} />
+                                        <p>Paypal</p>
+                                    </button>
+                                    
+                                </div>
                             </div>
+                            {/* <div className="bttn mt-4">
+                            <PaymentForm />
+                            </div> */}
                             
                         </div>
                     </div>
