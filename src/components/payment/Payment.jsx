@@ -17,7 +17,6 @@ const Payment = () => {
         <div className="cart">
             <Container>
                 <h1 className='mb-5'>Payment</h1>
-
                     <div className="cart-container">
                         <div className="cart-main product-main">
                             <div className="productContent">
@@ -52,18 +51,15 @@ const Payment = () => {
                                             <p>Card</p>
                                         </button>
                                     </Link>
-                                    
-                                    <button className="payment-card">
-                                        <FontAwesomeIcon icon= {faCcPaypal} />
-                                        <p>Paypal</p>
-                                    </button>
-                                    
+                                    <Link to='/paypal'>
+                                        <button className="payment-card">
+                                            <FontAwesomeIcon icon= {faCcPaypal} />
+                                            <p>Paypal</p>
+                                        </button>
+                                    </Link>
+                                       
                                 </div>
-                            </div>
-                            {/* <div className="bttn mt-4">
-                            <PaymentForm />
-                            </div> */}
-                            
+                            </div>  
                         </div>
                     </div>
             </Container>

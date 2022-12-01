@@ -4,7 +4,7 @@ import { API } from '../../config/api';
 import axios from "axios";
 import './stripe.scss';
 import { useNavigate } from 'react-router-dom';
-import Loader from "../../components/loader/Loader";
+import UserContext from "../../components/context/UserContext";
 
 
 const ProductDisplay = () => {
@@ -15,7 +15,8 @@ const ProductDisplay = () => {
   const [year, setYear] = useState('');
   const [cvv, setCvv] = useState('');
   const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const {cartValue} = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleEmail = (e) => {
@@ -55,12 +56,15 @@ const ProductDisplay = () => {
       //   navigate('/thankyou');
       // }
         axios.post(API.BASE_URL + 'stripe/',{
+          "user_id":2,
+          "order_id":68,
+          "total":cartValue,
           "name": name,
           "number": number,
-           "exp_month": month,
-           "exp_year": year,
-           "cvc": cvv,
-           "email": email 
+          "exp_month": month,
+          "exp_year": year,
+          "cvc": cvv,
+          "email": email 
         })
         .then((response)=>{
           console.log('POST PRODUCTS')

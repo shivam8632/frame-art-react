@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
-import Logo from '../../assets/img/logo.png';
 import './navbar.scss';
-//import 'react-dropdown/style.css';
 
 import {toast } from 'react-toastify';
 import UserContext from '../context/UserContext';
@@ -10,22 +8,34 @@ import UserContext from '../context/UserContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark, faUser, faCartShopping, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import { API } from '../../config/api';
+import { CartState } from '../context/UserContext';
 
 
 const Navigation = () => {
   const [isOpen, setOpen] = useState(false);
 
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const {userauth, setDimension}= useContext(UserContext); //Get Login User
+  const {userauth, setDimension, headerData, setHeaderData}= useContext(UserContext); //Get Login User
   const {prodDimension} = useContext(UserContext);
 
-  console.log('prodDimension', prodDimension)
+  console.log('prodDimension', prodDimension);
 
+  const {
+    state: { cart },
+    dispatch,
+    productDispatch,
+  } = CartState();
 
   const notify = () => toast.success("User Logged Out Successfully!");
   
   const navigate = useNavigate();
+
+  const logoImage = localStorage.getItem('Logo');
+
+  console.log("LOGO" ,logoImage);
 
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen)
@@ -36,7 +46,6 @@ const Navigation = () => {
   }
 
   const user = localStorage.getItem('loginToken');
-  
 
   localStorage.setItem('cartDataa', JSON.stringify(prodDimension));
 
@@ -49,33 +58,41 @@ const Navigation = () => {
     notify();
   }
 
+  useEffect(() => {
+    axios.get(API.BASE_URL + 'adminpanel/headerlist/', {})
+    .then(function(response) {
+      console.log("Console", response.data);
+      setHeaderData(response.data)
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  }, [])
+
 
   return (
     <>
       <header className='header'>
         <Container>
           <nav className='nav d-md-flex w-100 justify-content-between align-items-center'>
-
             <NavLink to="/" className='logo' onClick={() => setOpen(false)}>
-              <img src={Logo} alt="logo" />
+              <img src={logoImage} alt="logo" />
             </NavLink>
 
             <ul className={`menuNav ${navbarOpen ? " showMenu" : ""} nav-list d-flex flex-column flex-lg-row justify-content-md-start`}>
-              <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Create your frame art</NavLink>
-              </li>
-
-              <li onClick={() => setOpen(false)}>
-                <NavLink to="/material" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Materials</NavLink>
-              </li>
+              {
+                headerData?.map((item) => {
+                  return(
+                    <li onClick={() => setOpen(false)} key={item.id}>
+                      <Link to={item.url} activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">{item.menu}</Link>
+                    </li>
+                  )
+                })
+              }
 
               {/* <li onClick={() => setOpen(false)}>
                 <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Create your frame art</NavLink>
               </li> */}
-
-              <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Parts</NavLink>
-              </li>
 
               {/* <li>
                 <div className="dropdown">
@@ -99,18 +116,6 @@ const Navigation = () => {
                   </div>
                   </div>
               </li> */}
-
-              <li onClick={() => setOpen(false)}>
-                <NavLink to="/assembly" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Assembly</NavLink>
-              </li>
-
-              <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Cleaning</NavLink>
-              </li>
-
-              <li onClick={() => setOpen(false)}>
-                <NavLink to="/product" activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">Gallery</NavLink>
-              </li>
 
               <li onClick={() => setOpen(false)}>
                 <ul className="nav-icons icons d-flex flex-row justify-content-center d-lg-none"  onClick={() => setOpen(false)}>
@@ -146,6 +151,11 @@ const Navigation = () => {
                         prodDimension.length > 0 ?
                         <span>
                           {prodDimension.length}
+                        </span>
+                        :
+                        cart.length > 0 ?
+                        <span>
+                          {cart.length}
                         </span>
                         :
                         <span>0</span>
@@ -192,10 +202,15 @@ const Navigation = () => {
                 <div className="cart-icon">
                   <button className="button-icon">
                     <NavLink to='/cart'><FontAwesomeIcon icon={faCartShopping} /></NavLink>
-                      {
+                    {
                         prodDimension.length > 0 ?
                         <span>
                           {prodDimension.length}
+                        </span>
+                        :
+                        cart.length > 0 ?
+                        <span>
+                          {cart.length}
                         </span>
                         :
                         <span>0</span>

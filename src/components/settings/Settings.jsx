@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import { API } from '../../config/api';
 import {toast } from 'react-toastify';
+import UserContext from '../context/UserContext';
 
 import './settings.scss';
 
@@ -15,11 +16,33 @@ export default function Settings() {
     const [confNewPass, setConfNewPass] = useState('');
     const [newPass, setNewPass] = useState('');
     const [oldPass, setOldPass] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
+
+    const {userauth}= useContext(UserContext);
     var token = localStorage.getItem('loginToken');
     const pass = localStorage.getItem('password');
 
     const wrongOld = () => toast.warn("Wrong Password Entered");
     const wrongConfirm = () => toast.warn("New Password and Confirm Password are not Same");
+    const changeMessage = () => toast.success("Your Profile is successfully Updated");
+
+    const getLogData = localStorage.getItem('logInInfo');
+    console.log("Check Log", getLogData);
+    console.log(userauth.email);
+
+    const handleName = (e) => {
+        setName(e.target.value);
+    }
+
+    const handleLastName = (e) => {
+        setLastName(e.target.value);
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
 
     const passChange = (e) => {
         setNewPass(e.target.value);
@@ -68,6 +91,27 @@ export default function Settings() {
         event.preventDefault();
     };
 
+    const changeInfo = () => {
+        console.log("USER ID", userauth.id)
+        axios.post(API.BASE_URL + `updateprofile/${userauth.id}/`, {
+            First_name: name,
+            Last_name: lastName,
+            email: email,
+        }, {
+            headers: {"Authorization": `Bearer ${token}`}
+        })
+
+        .then(function(response) {
+            console.log(response);
+            changeMessage();
+            
+        })
+        .catch(function(error) {
+            console.log(error);
+            
+        })
+    }
+
   return (
     <div className="settings">
         <Container>
@@ -90,16 +134,17 @@ export default function Settings() {
                             <form onSubmit={handleSubmit}>
                                 <div className="input-container">
                                     <label>First Name</label>
-                                    <input type="text" />
+                                    <input type="text" placeholder={userauth.user_name} value={name} onChange={handleName} />
                                 </div>
                                 <div className="input-container">
                                     <label>Last Name</label>
-                                    <input type="text" />
+                                    <input type="text" placeholder={userauth.last_name} value={lastName} onChange={handleLastName} />
                                 </div>
                                 <div className="input-container">
                                     <label>Email</label>
-                                    <input type="email" />
+                                    <input type="email" placeholder={userauth.email} value={email} onChange={handleEmail} />
                                 </div>
+                                <button className="bttn" onClick={changeInfo}>Submit Changes</button>
                             </form>
                         </Tab.Pane>
                         <Tab.Pane eventKey="second">

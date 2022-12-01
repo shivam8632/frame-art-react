@@ -17,6 +17,7 @@ import './ProductBanner.scss';
 import { API } from '../../../config/api';
 import BoxModel from '../../box-model/BoxModel';
 
+
 const ProductBanner = () => {
     const {addDimension, checkT,tryFunction} = useContext(UserContext);
     const [isShown, setIsShown] = useState(false);
@@ -100,6 +101,9 @@ const ProductBanner = () => {
                 price: price,
                 product_name: prodName,
             })
+
+            localStorage.setItem("addedProducts", JSON.stringify(attributes));
+            JSON.parse(localStorage.getItem("addedProducts"))
             
             cart()
         }
@@ -111,9 +115,10 @@ const ProductBanner = () => {
         if(!token) {
             logError()
         }
-      
-    }
 
+        console.log("Checking", attributes)
+        
+    }
 
    if(attributes.length > 7) {
     const priceFetch = async () => {
@@ -123,7 +128,9 @@ const ProductBanner = () => {
             category_id: 1,
             quantity: parseInt(productQuantity),
             attributes: attributes
-        }, {})
+        }, {
+            headers: { 'Authorization' : `Bearer ${token}` }
+          })
         .then((response)=>{
           console.log('POST PRICE')
             console.log("json", response);

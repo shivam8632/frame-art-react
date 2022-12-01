@@ -80,6 +80,10 @@ const Footer = () => {
                         <li className='d-flex'>
                             <Link to="/terms-of-use" className="menu-link text-dark text-decoration-none">Terms of Use</Link>
                         </li>
+
+                        <li className='d-flex'>
+                            <Link to="/sale" className="menu-link text-dark text-decoration-none">For Sale</Link>
+                        </li>
                         </ul>
                     </div>
                     <div className="payments footer-content mb-5 mb-lg-0">

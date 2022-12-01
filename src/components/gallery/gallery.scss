@@ -1,0 +1,38 @@
+.gallery {
+    .gallery-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .gallery-box {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            padding: 0 10px;
+            margin-bottom: 30px;
+            img {
+                width: 100%;
+                display: flex;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    .gallery {
+        .gallery-list {
+            .gallery-box {
+                width: 33%;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 990px) {
+    .gallery {
+        .gallery-list {
+            .gallery-box {
+                margin-bottom: 50px;
+            }
+        }
+    }
+}

@@ -12,11 +12,7 @@
         position: relative;
         z-index: 2;
     }
-
-
 }
-
-
 
 @media only screen and (min-width: 768px) {
     .home-banner {
@@ -62,8 +58,10 @@
 
     .home-banner {
         .banner-content {
+            height: 100%;
             .content {
                 width: 46%;
+                margin-left: auto;
 
                 h1 {
                     font-size: 30px;
@@ -98,22 +96,55 @@
     }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 992px){
     .home-banner {
-        background-color: #000;
+        background: url(../../../assets/img/image_01.png);
+        background-repeat: no-repeat;
+        position: relative;
+        background-size: contain;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &::before {
+            content: '';
+            background-color: rgba(0, 0, 0, .3);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     }
-
 }
 
-@media only screen and (max-width: 1440px) {
+
+@media only screen and (min-width: 1440px){
     .home-banner {
-        background-image: url(../../../assets/img/banner-bg.webp);
-        background-repeat: no-repeat;
+        min-height: 94vh;
+    }
+}
+
+@media only screen and (min-width: 1600px){
+    .home-banner {  
+        .banner-content {
+            .content {
+                h1 {
+                    font-size: 45px;
+                }
+            }
+        }
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1440px) {
     .home-banner {
-        min-height: 100vh;
+        min-height: 94vh;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .home-banner {
+        background-image: url(../../../assets/img/banner-bg.webp);
+        background-repeat: no-repeat;
     }
 }

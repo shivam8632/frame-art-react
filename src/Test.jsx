@@ -19,7 +19,7 @@ const Testing = () => {
             // Camera Object
 
             // adding first cube...
-            var camera = new THREE.PerspectiveCamera(2, window.innerWidth / window.innerHeight, 3, 1000);
+            var camera = new THREE.PerspectiveCamera(3.5, window.innerWidth / window.innerHeight, 3, 1000);
             camera.position.set(-30,40,40)
             camera.lookAt(scene.position);
             scene.add(camera);
@@ -35,40 +35,41 @@ const Testing = () => {
             scene.add(cube);
 
             // adding second frame...
-            // var geome = new THREE.BoxGeometry(0.1, 2.5, 2.5);
-            // var mater = new THREE.MeshBasicMaterial({transparent:false});
-            // var mesh = new THREE.Mesh(geome , mater);
-            // cube.add(mesh);
-            // mesh.position.set(0, 0, 0);
+            var geome = new THREE.BoxGeometry(0.05, 3, 3);
+            var mater = new THREE.MeshBasicMaterial({transparent: true , opacity : 0.7 });
+            var mesh = new THREE.Mesh(geome , mater);
+            cube.add(mesh);
+            mesh.position.set(0.2,0, 0);
 
             // Making StandoffTexturee
-            var geom = new THREE.CylinderGeometry( 0.1,0.1, 0.3,64 );
+            var geom = new THREE.CylinderGeometry( 0.1,0.1, 0.5,64 );
             var mate = new THREE.MeshBasicMaterial({color: 0x000});
             var standoff = new THREE.Mesh(geom , mate);
             cube.add(standoff);
             geom.rotateZ(-Math.PI * 0.5);
-            standoff.position.set(0,1.2,1.3);
+            standoff.position.set(0.1,1.2,1.3);
 
-            var geom2 = new THREE.CylinderGeometry( 0.1,0.1,0.3,64 );
+            var geom2 = new THREE.CylinderGeometry( 0.1,0.1,0.5,64 );
             var mate2= new THREE.MeshBasicMaterial({color: 0x000});
             var standoff2 = new THREE.Mesh(geom2 , mate2);
             cube.add(standoff2);
             geom2.rotateZ(-Math.PI * 0.5);
-            standoff2.position.set(0,1.2,-1.3);
+            standoff2.position.set(0.1,1.2,-1.3);
 
-            var geom3 = new THREE.CylinderGeometry( 0.1,0.1,0.3 ,64 );
+            var geom3 = new THREE.CylinderGeometry( 0.1,0.1,0.5 ,64 );
             var mate3 = new THREE.MeshBasicMaterial({color: 0x000});
             var standoff3 = new THREE.Mesh(geom3 , mate3);
             cube.add(standoff3);
             geom3.rotateZ(-Math.PI * 0.5);
-            standoff3.position.set(0,-1.2,1.3);
+            standoff3.position.set(0.1,-1.2,1.3);
 
-            var geom4 = new THREE.CylinderGeometry( 0.1,0.1,0.3,64 );
+            var geom4 = new THREE.CylinderGeometry( 0.1,0.1,0.5,64 );
             var mate4 = new THREE.MeshBasicMaterial({color: 0x000});
             var standoff4 = new THREE.Mesh(geom4 , mate4);
             cube.add(standoff4);
             geom4.rotateZ(-Math.PI * 0.5);
-            standoff4.position.set(0,-1.2,-1.3);
+            standoff4.position.set(0.1,-1.2,-1.3);
+
 
 
             // STANDOFF Texture offset
@@ -151,12 +152,51 @@ const Testing = () => {
             box.add(cube.scale, 'x', 0, 0.1).name('Width');//.listen();
             box.add(cube.scale, 'y', 0, 3 ).name('Height');//.listen();
             box.add(cube.scale, 'z', 0, 6).name('Length');//.listen();
+            // if (cube.scale, 'y' > 5){
+                
+            // }
 
             box.open();
 
             document.getElementById('frame-1').defaultValue = 5;
+
             document.getElementById('frame-2').defaultValue = 5;
+            if (document.getElementById('frame-2').value >= 6){
+                var geom = new THREE.CylinderGeometry( 0.1,0.1, 0.5,64 );
+                var mate = new THREE.MeshBasicMaterial({color: 0x000});
+                var standoff5 = new THREE.Mesh(geom , mate);
+                cube.add(standoff5);
+                geom.rotateZ(-Math.PI * 0.5);
+                standoff5.position.set(0.1,-0,-1.3);
+    
+    
+                var geom = new THREE.CylinderGeometry( 0.1,0.1, 0.5,64 );
+                var mate = new THREE.MeshBasicMaterial({color: 0x000});
+                var standoff6 = new THREE.Mesh(geom , mate);
+                cube.add(standoff6);
+                geom.rotateZ(-Math.PI * 0.5);
+                standoff6.position.set(0.1,0,1.3);    
+            }
+
+
             document.getElementById('frame-3').defaultValue = 5;
+            if (document.getElementById('frame-3').value >=6){
+                
+                var geom = new THREE.CylinderGeometry( 0.1,0.1, 0.5,64 );
+                var mate = new THREE.MeshBasicMaterial({color: 0x000});
+                var standoff7 = new THREE.Mesh(geom , mate);
+                cube.add(standoff7);
+                geom.rotateZ(-Math.PI * 0.5);
+                standoff7.position.set(0,-1.2,0);
+
+
+                var geom = new THREE.CylinderGeometry( 0.1,0.1, 0.5,64 );
+                var mate = new THREE.MeshBasicMaterial({color: 0x000});
+                var standoff8 = new THREE.Mesh(geom , mate);
+                cube.add(standoff8);
+                geom.rotateZ(-Math.PI * 0.5);
+                standoff8.position.set(0,1.2,0); 
+            }
             document.getElementById('frame-4').defaultValue = 5;
             
             var frameOne = document.getElementById('frame-1').value;
@@ -179,32 +219,78 @@ const Testing = () => {
             console.log("Select Value", cube.material.color)
             })
             abc.open();
+
             var getValue = document.getElementById('frame-5').selectedOptions[0].value;
-            console.log("Select Value", cube.material.color)
-            if(getValue == 'black') {
+            console.log("getValue", getValue);
+            if(getValue == 'black' || getValue == 'Black') {
                 console.log('Black');
                 cube.material.color.b = 0;
                 cube.material.color.g = 0;
                 cube.material.color.r = 0;
             }
-            if(getValue == 'white') {
+            if(getValue == 'White') {
                 console.log('White');
                 cube.material.color.b = 1;
                 cube.material.color.g = 1;
                 cube.material.color.r = 1;
             }
-            if(getValue == 'charcoal') {
+            if(getValue == 'Charcoal') {
                 console.log('Charcoal');
                 cube.material.color.b = 0.3176470588235294;
                 cube.material.color.g = 0.3176470588235294;
                 cube.material.color.r = 0.3176470588235294;
             }
-            if(getValue == 'grey') {
+            if(getValue == 'Grey') {
                 console.log('Grey');
                 cube.material.color.b = 0.48627450980392156;
                 cube.material.color.g = 0.48627450980392156;
                 cube.material.color.r = 0.48627450980392156;
             }
+
+
+            var abc2 = gui.addFolder('Color frame' );
+            var conf2 = { color : '#ffae23' };    
+            gui.addColor(conf2, 'color').onChange( function(colorValue) {
+            mesh.material.color.set(colorValue)
+            console.log("Select Glass Value", mesh.material.color)
+            })
+            abc2.open();
+
+            var getGlassValue = document.getElementById('frame-6').selectedOptions[0].value;
+            console.log("getGlassValue", mesh.material.color);
+            if(getGlassValue == 'frosted' || getGlassValue == 'Frosted') {
+                console.log('Frosted');
+                mesh.material.color.b = 240;
+                mesh.material.color.g = 240;
+                mesh.material.color.r = 234;
+            }
+            if(getGlassValue == 'Transparent Yellow') {
+                console.log('Transparent Yellow');
+                mesh.material.color.b = 0;
+                mesh.material.color.g = 255;
+                mesh.material.color.r = 255;
+            }
+            if(getGlassValue == 'Transparent Orange') {
+                mesh.material.color.r = 255;
+                mesh.material.color.g = 128;
+                mesh.material.color.b = 0;
+                console.log("Orange" ,mesh.material.color.r);
+            }
+            if(getGlassValue == 'Transparent Green') {
+                mesh.material.color.b = 0;
+                mesh.material.color.g = 255;
+                mesh.material.color.r = 0;
+            }
+            if(getGlassValue == 'Transparent Blue') {
+                mesh.material.color.b = 255;
+                mesh.material.color.g = 0;
+                mesh.material.color.r = 0;
+            }
+
+
+
+
+            
 
             // Iamge Section
             var image = gui.addFolder('Add-Image')
@@ -301,7 +387,7 @@ const Testing = () => {
 
             var getStandOff = document.getElementById('frame-8').selectedOptions[0].value;
             console.log("Standoff Value", standoff.material.color)
-            if(getStandOff == 'black') {
+            if(getStandOff == 'Black') {
                 console.log('Black');
                 standoff.material.color.b = 0;
                 standoff.material.color.g = 0;
@@ -319,7 +405,7 @@ const Testing = () => {
                 standoff4.material.color.g = 0;
                 standoff4.material.color.r = 0;
             }
-            if(getStandOff == 'white') {
+            if(getStandOff == 'White') {
                 console.log('White');
                 standoff.material.color.b = 1;
                 standoff.material.color.g = 1;
@@ -336,6 +422,40 @@ const Testing = () => {
                 standoff4.material.color.b = 1;
                 standoff4.material.color.g = 1;
                 standoff4.material.color.r = 1;
+            }
+            if(getStandOff == 'Silver') {
+                standoff.material.color.b = 192;
+                standoff.material.color.g = 192;
+                standoff.material.color.r = 192;
+
+                standoff2.material.color.b = 192;
+                standoff2.material.color.g = 192;
+                standoff2.material.color.r = 192;
+
+                standoff3.material.color.b = 192;
+                standoff3.material.color.g = 192;
+                standoff3.material.color.r = 192;
+
+                standoff4.material.color.b = 192;
+                standoff4.material.color.g = 192;
+                standoff4.material.color.r = 192;
+            }
+            if(getStandOff == 'Gold') {
+                standoff.material.color.b = 0;
+                standoff.material.color.g = 215;
+                standoff.material.color.r = 255;
+
+                standoff2.material.color.b = 0;
+                standoff2.material.color.g = 215;
+                standoff2.material.color.r = 255;
+
+                standoff3.material.color.b = 0;
+                standoff3.material.color.g = 215;
+                standoff3.material.color.r = 255;
+
+                standoff4.material.color.b = 0;
+                standoff4.material.color.g = 215;
+                standoff4.material.color.r = 255;
             }
 
             // REnder Function

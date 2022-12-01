@@ -23,6 +23,10 @@ import PaymentForm from '../payments/stripe/Stripe';
 import ProductDisplay from '../payments/stripe/Stripe';
 import Thank from '../components/thankyou/Thank';
 import Settings from '../components/settings/Settings';
+import Gallery from '../components/gallery/Gallery';
+import Products from '../components/sale/Sale';
+import Forget from '../components/password/Forget';
+import Paypal from '../payments/paypal/Paypal'
 
 function Routing() {
   return (
@@ -52,6 +56,10 @@ function Routing() {
         <Route path='/stripe' element={<ProductDisplay />} />
         <Route path ='/thankyou' element={<Thank />} />
         <Route path ='/settings' element={<Settings />} />
+        <Route path='/gallery' element={<Gallery />} />
+        <Route path="/sale" element={<Products />} />
+        <Route path='forget-password' element={<Forget />} />
+        <Route path='/paypal' element={<Paypal />} />
     </Routes>
     <Footer />
     </div>

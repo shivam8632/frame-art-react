@@ -39,7 +39,7 @@ const Login = () => {
           password: password,
       })
       .then(function(response) {
-          console.log(response);
+          console.log("LOG IN" ,response);
           if(response.data.msg) {
             notify();
             localStorage.setItem('loginToken', response.data.token.access);
@@ -47,6 +47,7 @@ const Login = () => {
             localStorage.setItem('password', password);
             console.log("Local Storage", localStorage.getItem('loginToken'))
             console.log("Success"); 
+            console.log("LOG IN Info", response.config.data)
             navigate('/');
           }
 
@@ -62,9 +63,15 @@ const Login = () => {
             })
             .then((res)=>{
               setAuth({
-                user_name: res.data.First_name
+                user_name: res.data.First_name,
+                last_name: res.data.Last_name,
+                email: res.data.email,
+                id: res.data.id
               })
                 console.log('profile Get', res.data.First_name)
+                console.log('profile Get LAst', res.data.Last_name)
+                console.log('profile Get Email', res.data.email)
+                console.log('profile Get Id', res.data.id)
             })
     
             .catch(function(error) {
@@ -106,7 +113,7 @@ const Login = () => {
             <button className='bttn' onClick={handleLogin}>Submit</button>
         </div>
         <div className="input-account">
-          <Link to='/'>Forget Password</Link>
+          <Link to='/forget-password'>Forget Password</Link>
           <p className='mt-4 mb-0'>Don't have an Account</p>
           <Link to='/signup'>Sign Up</Link>
         </div>
