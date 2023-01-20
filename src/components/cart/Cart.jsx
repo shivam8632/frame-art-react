@@ -10,6 +10,7 @@ import UserContext from '../context/UserContext';
 const Cart = () => {
     const {prodDimension, setCartValue, cartValue} = useContext(UserContext);
     console.log('prodDimensionCart', prodDimension)
+    const cartProd = JSON.parse(localStorage.getItem("addedProductssssssss"));
     console.log("LOC" ,localStorage.getItem('cartProduct'))
     const navigate = useNavigate();
     const user = localStorage.getItem('loginToken');
@@ -28,6 +29,9 @@ const Cart = () => {
         );
       }, [cart]);
 
+      console.log("Cart Products", cartProd);
+      localStorage.setItem("addedProducts", JSON.stringify(prodDimension));
+      console.log("Added Products",JSON.parse(localStorage.getItem("addedProducts")));
   
     var total=0;
     for(let i = 0; i < prodDimension.length; i++){

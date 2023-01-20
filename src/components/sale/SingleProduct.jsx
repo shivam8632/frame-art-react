@@ -11,11 +11,11 @@ const SingleProduct = ({ prod }) => {
   return (
     <div className='products'>
       <Card>
-        <Card.Img variant='top' src={prod.image} alt={prod.name} />
+        <Card.Img variant='top' src={`http://13.210.246.45:8000${prod.image}/`} alt={prod.name} />
         <Card.Body>
           <Card.Title>{prod.name}</Card.Title>
           <Card.Subtitle style={{ paddingBottom: 10 }}>
-            <span>$ {prod.price.split(".")[0]}</span>
+            <span>{prod.price.split(".")[0]}</span>
           </Card.Subtitle>
 
           {cart.some(p=>p.id===prod.id) ? (

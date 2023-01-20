@@ -8,11 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useContext } from 'react';
 import axios from 'axios';
 import UserContext from './components/context/UserContext';
+import { CartState } from './components/context/UserContext';
 
 import { API } from './config/api';
 
 function App() {
   const { setAuth, prodDimension } = useContext(UserContext); //Login Context
+  const { state: { products } } = CartState();
+    console.log('Products Check Appjs', products)
 
   useEffect(() => {
     localStorage.getItem('cartProduct');
@@ -44,8 +47,17 @@ function App() {
         })
 
     }
+  }, [])
 
-    JSON.parse(localStorage.getItem('cartDataa'))
+  useEffect(() => {
+      JSON.parse(localStorage.getItem("addedQuantity"));
+      console.log("Quantity in Cart", JSON.parse(localStorage.getItem("addedQuantity")));
+
+      JSON.parse(localStorage.getItem("addedPrice"));
+      console.log("Price in Cart", JSON.parse(localStorage.getItem("addedPrice")));
+
+      JSON.parse(localStorage.getItem("addedName"));
+      console.log("Name in Cart", JSON.parse(localStorage.getItem("addedName")));
   }, [])
 
   useEffect(() => {
@@ -61,7 +73,19 @@ function App() {
   })
 
   console.log("APP.js", prodDimension);
-  JSON.parse(localStorage.getItem("addedProducts"));
+  }, [])
+
+  useEffect(() => {
+    axios.get(API.BASE_URL + 'adminpanel/salelist/', {})
+    .then(function(response) {
+      console.log("Sale List" , response.data);
+      localStorage.setItem("Sale_Products", JSON.stringify(response.data))
+      
+  })
+  .catch(function(error) {
+    console.log(error);
+      
+  })
   }, [])
 
   return (

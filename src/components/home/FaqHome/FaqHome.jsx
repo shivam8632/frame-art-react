@@ -9,12 +9,24 @@ import './FaqHome.scss';
 
 const FaqHome = () => {
     const [faqData, setFaqData] = useState(['']);
+    const [faqColor, setFaqColor] = useState(['']);
 
     useEffect(() => {
         axios.get(API.BASE_URL + 'adminpanel/FAQ/',{}, {})
         .then((response)=>{
-          console.log("FAQ Data", response);
           setFaqData(response.data);
+        })
+
+        .catch(function(error) {
+            console.log(error.response);
+            
+        })
+    }, [])
+
+    useEffect(() => {
+        axios.get(API.BASE_URL + 'adminpanel/FAQ-color-list/',{}, {})
+        .then((response)=>{
+          setFaqColor(response.data)
         })
 
         .catch(function(error) {
@@ -33,8 +45,14 @@ const FaqHome = () => {
                 {faqData.map((faqData) => {
                     return(
                         <Accordion.Item eventKey={faqData.id} key={faqData.id}>
-                            <Accordion.Header>{faqData.title}</Accordion.Header>
-                            <Accordion.Body>{faqData.description}</Accordion.Body>
+                            {faqColor.map((faqItem, i) => {
+                                return(
+                                    <>
+                                        <Accordion.Header style={{background: faqItem.title_background, color: faqItem.title}}>{faqData.title}</Accordion.Header>
+                                        <Accordion.Body style={{background: faqItem.description_background, color: faqItem.description}}>{faqData.description}</Accordion.Body>
+                                    </>
+                                )
+                            })}
                         </Accordion.Item>
                     )
                 })}

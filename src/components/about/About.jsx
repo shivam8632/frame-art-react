@@ -1,33 +1,41 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from 'react-bootstrap/Container';
+import axios from 'axios';
+import { API } from '../../config/api';
+import parse from 'html-react-parser';
 
 import './About.scss';
 
 const About = () => {
+    const [aboutContent, setAboutContent] = useState();
+
+    useEffect(() => {
+        axios.get(API.BASE_URL + 'adminpanel/about-us/', {})
+        .then(function(response) {
+          console.log("Terms of Use", response.data);
+          setAboutContent(response.data)
+          
+      })
+      .catch(function(error) {
+        console.log(error);
+          
+      })
+    }, [])
     return(
         <div className="about">
             <Container>
                 <div className="about-container">
-                    <div className="heading">
-                        <h2>About Frame Art</h2>
-                    </div>
-                    <div className="about-content">
-                        <h3>Lorem ipsum dolor sit amet consectetur</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, necessitatibus tempora! Quisquam, iusto expedita. Iure tempore culpa dolorum aliquam cupiditate, nostrum qui eaque dignissimos harum in ad veniam libero iste.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident porro veniam adipisci dolor qui accusantium.</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus voluptatibus neque voluptatem. Deserunt laudantium ab recusandae beatae perspiciatis iusto at. Similique harum nulla architecto.</p>
-
-                        <h3>Lorem ipsum dolor sit amet consectetur</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, necessitatibus tempora! Quisquam, iusto expedita. Iure tempore culpa dolorum aliquam cupiditate, nostrum qui eaque dignissimos harum in ad veniam libero iste.Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-
-                        <h3>Lorem ipsum dolor sit amet consectetur</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, necessitatibus tempora! Quisquam, iusto expedita.Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, necessitatibus tempora! Quisquam, iusto expedita.</p>
-
-                        <h3>Lorem ipsum dolor sit amet consectetur</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, necessitatibus tempora! Quisquam, iusto expedita. Iure tempore culpa dolorum aliquam cupiditate, nostrum qui eaque dignissimos harum in ad veniam libero iste.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident porro veniam adipisci dolor qui accusantium.</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus voluptatibus neque voluptatem. Deserunt laudantium ab recusandae beatae perspiciatis iusto at. Similique harum nulla architecto.</p>
-                    </div>
+                    {aboutContent?.map((contentP) => {
+                        return(
+                            <>
+                                <div className="heading mb-0">
+                                    <h2>{contentP.title}</h2>
+                                </div>
+                                {parse(contentP.content)}
+                            </>
+                            
+                        )
+                    })}
                 </div>
             </Container>
         </div>

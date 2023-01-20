@@ -21,6 +21,8 @@ const Checkout = () => {
     const [state, setState] = useState("");
     const [email, setEmail] = useState("");
 
+    var token = localStorage.getItem('loginToken');
+
     const emptyData = () => toast.warn("Please fill out all the fields");
 
     const {
@@ -53,7 +55,7 @@ const Checkout = () => {
         event.preventDefault();
 
           axios.post(API.BASE_URL + 'order/post/',{
-            user_id: 1,
+            user_id: 2,
             email: email,
             contact: phone,
             name: name,
@@ -64,7 +66,10 @@ const Checkout = () => {
             zip_code: code,
             items: prodDimension,
             total: cartValue,
-        }, {})
+            status: "pending"
+        }, {
+            headers: { 'Authorization' : `Bearer ${token}` }
+          })
         .then((response)=>{
             console.log("jsonkjbjkjkbi", response.data);
             setCheckValue(response.data);
@@ -76,8 +81,6 @@ const Checkout = () => {
             console.log(error.response);
             emptyData()
         })
-
-          
     }
 
     console.log("Checkout", cart);
@@ -86,7 +89,7 @@ const Checkout = () => {
         event.preventDefault();
 
           axios.post(API.BASE_URL + 'order/post/',{
-            user_id: 1,
+            user_id: 2,
             email: email,
             contact: phone,
             name: name,
@@ -97,7 +100,10 @@ const Checkout = () => {
             zip_code: code,
             items: cart,
             total: newTotal,
-        }, {})
+            status: "pending"
+        }, {
+            headers: { 'Authorization' : `Bearer ${token}` }
+        })
         .then((response)=>{
             console.log("jsonkjbjkjkbi", response.data);
             setCheckValue(response.data);

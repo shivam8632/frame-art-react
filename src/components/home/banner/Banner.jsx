@@ -43,13 +43,13 @@ const HomeBanner = () => {
             <Container>
             <div className="banner-content pb-5 d-md-flex justify-content-between align-items-center">
 
-                {bannerContent.map((bannerContent) => {
+                {bannerContent.map((bannerData, i) => {
                     return(
-                        <div className="content" key={bannerContent.id}>
-                            <h1 className='text-start text-light'>{bannerContent.title}</h1>
-                            <p className='text-start text-light my-3 my-md-4'>{bannerContent.description}</p>
+                        <div className="content" key={i}>
+                            <h1 className='text-start' style={{color: bannerData.title_color}}>{bannerData.title}</h1>
+                            <p className='text-start my-3 my-md-4' style={{color: bannerData.description_color}}>{bannerData.description}</p>
                             <div className="buttons d-flex pb-5 pb-lg-0 justify-content-start">
-                                <Link to='/product'><button className='mb-4 mb-lg-0'>{bannerContent.button_text}</button></Link>
+                                <Link to='/product'><button className='mb-4 mb-lg-0' style={{color: bannerData.button_text_color, background: bannerData.button_background}}>{bannerData.button_text}</button></Link>
                             </div>
                         </div>
                     )

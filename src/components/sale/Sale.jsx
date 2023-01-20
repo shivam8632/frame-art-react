@@ -11,7 +11,7 @@ export default function Products() {
     <Container>
         <div className="product-container">
         {
-          products.map((prod) => {
+          products?.map((prod) => {
             return (
               <SingleProduct prod={prod} key={prod.id} />
             )

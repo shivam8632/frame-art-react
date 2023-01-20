@@ -12,6 +12,7 @@ export default function Paypal() {
     const [email, setEmail] = useState('');
     const {cartValue} = useContext(UserContext);
     const navigate = useNavigate();
+    var token = localStorage.getItem('loginToken');
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -28,15 +29,20 @@ export default function Paypal() {
 
     const payFunc = async () => {
         axios.post(API.BASE_URL + 'paypal/',{
-        "user_id":3,
-        "order_id":3,
+        "user_id":2,
+        "order_id":6,
         "total": cartValue,
         "name":  name,
         "email": email
-        })
+        },
+        {
+            headers: { 'Authorization' : `Bearer ${token}` }
+        }
+          )
         .then((response)=>{
             console.log('POST PRODUCTS')
             console.log(response);
+            window.open(response.data)
             // axios.post(API.BASE_URL + 'paypal/capturepayment/')
             // .then(() => {
             //     navigate('/thankyou')

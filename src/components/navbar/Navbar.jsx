@@ -22,6 +22,7 @@ const Navigation = () => {
   const {prodDimension} = useContext(UserContext);
 
   console.log('prodDimension', prodDimension);
+  
 
   const {
     state: { cart },
@@ -34,8 +35,6 @@ const Navigation = () => {
   const navigate = useNavigate();
 
   const logoImage = localStorage.getItem('Logo');
-
-  console.log("LOGO" ,logoImage);
 
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen)
@@ -61,7 +60,6 @@ const Navigation = () => {
   useEffect(() => {
     axios.get(API.BASE_URL + 'adminpanel/headerlist/', {})
     .then(function(response) {
-      console.log("Console", response.data);
       setHeaderData(response.data)
     })
     .catch(function(error) {
@@ -84,7 +82,7 @@ const Navigation = () => {
                 headerData?.map((item) => {
                   return(
                     <li onClick={() => setOpen(false)} key={item.id}>
-                      <Link to={item.url} activeclassname='is-active' onClick={() => closeMenu()} className="menu-link">{item.menu}</Link>
+                      <Link to={item.url} activeclassname='is-active' onClick={() => closeMenu()} className="menu-link" style={{color: item.color}}>{item.menu}</Link>
                     </li>
                   )
                 })
