@@ -11,11 +11,12 @@ import UserContext from '../../context/UserContext';
 import productData from '../../data/Products';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import '../../../Test'
 import './ProductBanner.scss';
 
 import { API } from '../../../config/api';
 import BoxModel from '../../box-model/BoxModel';
+
 
 
 const ProductBanner = () => {
@@ -39,7 +40,18 @@ const ProductBanner = () => {
 
     console.log('loginToken', token)
 
+      const [image, setMessage] = useState('');
+    
+      const handleChange = (event) => {
+        // 👇 Get input value from "event"
+        console.log(event.target.value);
 
+      };
+
+    // function handleSubmit(e){
+    //     console.log(e.target.value)
+    // }
+    
     const setData = (e,item,key) =>{
         let oldAttributes =  attributes ;
         console.log(typeof parseInt(e.target.value)=='NaN')
@@ -215,12 +227,15 @@ const ProductBanner = () => {
                                                         )
                                                     })}  
                                                 </select>
+                                                
+
                                             </div>
                                         )
                                     }
                                 })
                             }
 
+                               
                             
 
                             <div className="input-box mb-3">
@@ -233,17 +248,12 @@ const ProductBanner = () => {
                                     ))}
                                 </select>
                             </div>
-
-                            <div id="upload-img">
-                                <li className="cr function">
-                                    <div>
-                                        <span className="property-name">Upload Image</span>
-                                        <div className="c">
-                                            <div className="button"></div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </div>
+ 
+                            
+                                <div className="image">
+                                Image
+                                <input type="file" name="image" id="img-path" placeholder="Image" isShown style={{display: "block"}} onChange={handleChange}/> 
+                                </div>
 
                             <div className="total mb-3">
                                 <span className="each-price">$3.77 each</span>
@@ -259,6 +269,7 @@ const ProductBanner = () => {
                                             <span className="subtotal me-2 d-flex">Subtotal: $0</span>
                                         }
                                     </span>
+                 
                                 </div>
                                 {/* <div className="match">
                                     <button className="match-button" onClick={handleClick}>We price match</button>
