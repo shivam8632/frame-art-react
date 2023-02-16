@@ -38,7 +38,7 @@ const Testing = () => {
             material.needsUpdate= true
             scene.add(cube);
 
-// adding for the image part 
+            // adding for the image part 
             var geome = new THREE.BoxGeometry(0.05,2.5 ,2.5 );
             var mater = new THREE.MeshBasicMaterial({transparent : false , color : 0x3d3d3d});
             var ImageMesh = new THREE.Mesh(geome , mater);
@@ -70,7 +70,7 @@ const Testing = () => {
             mater.needsUpdate = true
             mesh.castShadow = true;
             mesh.receiveShadow = true;
-            mesh.position.set(0.25,0, 0);
+            mesh.position.set(0.21,0, 0);
 
             const cubeCamera = new THREE.CubeCamera(50, 100, 512); 
             scene.add(cubeCamera);
@@ -123,9 +123,6 @@ const Testing = () => {
             standoffchild1.position.set(0.04,0,0);
 
 
-
-
-
             var geom2 = new THREE.CylinderGeometry( 0.08,0.08, 0.25,64);
             var mate2= new THREE.MeshPhongMaterial({color: 0x000,
                 shininess: 80,
@@ -158,9 +155,6 @@ const Testing = () => {
             standoffparent2.add(standoffchild2);
             geom2_2.rotateZ(-Math.PI * 0.5);
             standoffchild2.position.set(0.04,0,0);
-
-
-
 
 
             var geom3 = new THREE.CylinderGeometry( 0.08,0.08, 0.25,64 );
@@ -249,7 +243,7 @@ const Testing = () => {
 
             //controls.update() must be called after any manual changes to the camera's transform
             camera.position.set( 440, 200, 100 );
-            controls.update();
+            // controls.update();
             controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
             controls.dampingFactor = 0.5;
             camera.position.set( 400, 200, 100 );
@@ -260,53 +254,13 @@ const Testing = () => {
 
             // Options to be added to the GUI
 
-            var options = {
-                velx: 0,
-                vely: 0,
-                camera: {
-                speed: 0
-                },
-                stop: function() {
-                    this.velx = 0;
-                    this.vely = 0;
-                    camera.position.z = 200;
-                    camera.position.x = 400;
-                    camera.position.y = 100;
-                    cube.scale.x = 1;
-                    cube.scale.y = 1;
-                    cube.scale.z = 1;
-
-                },
-                reset: function() {
-                    this.velx = 0;   
-                    this.vely = 0;
-                    camera.position.z = 200;
-                    camera.position.x = 400;
-                    camera.position.y = 100;
-                    cube.scale.x = 1;
-                    cube.scale.y = 1;
-                    cube.scale.z = 1;
-                    cube.material.color.set(0xffffff);
-
-                    material = new THREE.MeshBasicMaterial({map:0xffffff})
-                    wireframe.material.color.set(0x000000)
-                    standoff.material.color.set(0x000000)
-                    standoff2.material.color.set(0x000000)
-                    standoff3.material.color.set(0x000000)
-                    standoff4.material.color.set(0x000000)
-                },
-            };  
-
-
+           
             var gui = new GUI();
-
             var cam = gui.addFolder('Camera');
             // cam.add(options.camera, 'speed', 0, 0.0010).listen();
             cam.add(camera.position,'y', 0, 1000).listen();
             cam.open();
             console.log("Y-Axis", camera.position.y)
-
-
 
             
             // Height Weidth and Length Controler
@@ -528,9 +482,11 @@ const Testing = () => {
             var abc2 = gui.addFolder('Color frame' );
             var conf2 = { color : '#ffae23' };    
             gui.addColor(conf2, 'color').onChange( function(colorValue) {
+                mesh.material.needsUpdate = false;
+
             mesh.material.color.set(colorValue)
             console.log("Select Glass Value", mesh.material.color)
-            material.needsUpdate = true
+            material.needsUpdate = false
 
             })
             abc2.open();
@@ -542,28 +498,37 @@ const Testing = () => {
                 mesh.material.color.b = 240;
                 mesh.material.color.g = 240;
                 mesh.material.color.r = 234;
+                mesh.material.needsUpdate = false;
+
             }
             if(getGlassValue == 'Transparent Yellow') {
                 console.log('Transparent Yellow');
                 mesh.material.color.b = 0;
                 mesh.material.color.g = 255;
                 mesh.material.color.r = 255;
+                mesh.material.needsUpdate = false;
             }
             if(getGlassValue == 'Transparent Orange') {
                 mesh.material.color.r = 255;
                 mesh.material.color.g = 170;
                 mesh.material.color.b = 102;
                 console.log("Orange" ,mesh.material.color.r);
+                mesh.material.needsUpdate = false;
+
             }
             if(getGlassValue == 'Transparent Green') {
                 mesh.material.color.b = 0;
                 mesh.material.color.g = 255;
                 mesh.material.color.r = 0;
+                mesh.material.needsUpdate = false;
+
             }
             if(getGlassValue == 'Transparent Blue') {
                 mesh.material.color.b = 255;
                 mesh.material.color.g = 0;
                 mesh.material.color.r = 0;
+                mesh.material.needsUpdate = false;
+
             }
 
 
@@ -572,15 +537,14 @@ const Testing = () => {
             
 
             // Iamge Section
+            var input = document.getElementById('img-path');
+            input.addEventListener('click', function() {
             var image = gui.addFolder('Add-Image')
             image.open();
-            var GuiConfig = function () {
-            this['Image Path'] = 'Image-Path';  // default image path
-            image.src = 'webgl/mdm_webgl_20.png';
 
             // this['Upload Image'] = function(handleChange) {
                 // you need to create an input element in HTML
-                var input = document.getElementById('img-path');
+                
                 var input2 = document.getElementById('img-path').value;
                 console.log("- - - - - - - - - - - - - - -  - - ->" , input2)
                 console.log("Input - - - - - - - - - - >" , input)
@@ -603,29 +567,21 @@ const Testing = () => {
 
                         console.log(material)
                         console.log(cube)
+                        material.needsUpdate = false
                         // material.depthtset = false;
                         ImageMesh.material = material;
-                        texture.needsUpdate = true;
+                        texture.needsUpdate = false;
                         material.map= texture
-                        material.needsUpdate = true
             })
                         // return reader;
                     }
                     reader.readAsDataURL(file);
                     
-                });    
+                });   
                 input.click()
                 // }
-            };
+        })
 
-                    
-            var config = new GuiConfig();
-            gui.add(config, 'Image Path', config['reader.result']);
-            // gui.add(config, 'Upload Image');
-            gui.add(options, 'stop');
-            gui.add(options, 'reset');// onClick="refreshPage()");
-
-            // console.log("Upload Button", gui.config)
 
             var geo = new THREE.EdgesGeometry( mesh.geometry )
             var mat = new THREE.LineBasicMaterial({color :0xeeeeee ,transparent:true	,opacity :1,linewidth: 1})
@@ -1170,8 +1126,8 @@ const Testing = () => {
             function animate() {
             requestAnimationFrame( animate  , abc);
 
-            // required if controls.enableDamping or controls.autoRotate are set to true
-            controls.update(scene);
+            // // required if controls.enableDamping or controls.autoRotate are set to true
+            controls.update();
             renderer.render( scene ,camera  );
             };
 
